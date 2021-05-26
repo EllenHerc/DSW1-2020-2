@@ -20,7 +20,7 @@ public class Conexao {
     public Conexao() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");			
         //servidor, porta, banco de dados, usuario, senha
-	conexao = DriverManager.getConnection("jdbc:mysql://localhost:3000/"+ this.bancoDados,"web1","web1caio");
+	conexao = DriverManager.getConnection("jdbc:mysql://localhost:3000/"+ this.bancoDados + "?useTimezone=true&serverTimezone=UTC","web1","web1caio");
 	conexao.setAutoCommit(false);	
     }
     
