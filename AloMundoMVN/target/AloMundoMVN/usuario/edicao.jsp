@@ -28,6 +28,7 @@
                       <label>Senha</label>
                       <input type="password" class="form-control" name="senha" value="<c:out value='${usuario.senha}' />">
                     </div>
+                    
                     <button type="submit" class="btn btn-primary">Atualizar</button>
                 </form>
             </div>
