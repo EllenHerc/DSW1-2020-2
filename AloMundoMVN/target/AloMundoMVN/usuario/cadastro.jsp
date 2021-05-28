@@ -18,15 +18,15 @@
                 <form method="post" action="/<%= contextPath%>/cadastro">
                     <div class="form-group">
                       <label>Nome</label>
-                      <input type="text" class="form-control" name="nome">
+                      <input type="text" class="form-control" name="nome" required>
                     </div>
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" name="email">
+                      <input type="email" class="form-control" name="email" required>
                     </div>
                     <div class="form-group">
                       <label>Senha</label>
-                      <input type="password" class="form-control" name="senha">
+                      <input type="password" class="form-control" name="senha" required>
                     </div>
                     <div class="form-group form-check">
                       <input type="checkbox" class="form-check-input" name="isAdmin" value="1">

@@ -18,15 +18,15 @@
                 <form method="post" action="/<%= contextPath%>/edicao?id=<c:out value='${usuario.id}' />">
                     <div class="form-group">
                       <label>Nome</label>
-                      <input type="text" class="form-control" name="nome" value="<c:out value='${usuario.nome}' />">
+                      <input type="text" class="form-control" name="nome" required value="<c:out value='${usuario.nome}' />">
                     </div>
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" name="email" value="<c:out value='${usuario.email}' />">
+                      <input type="email" class="form-control" name="email" required value="<c:out value='${usuario.email}' />">
                     </div>
                     <div class="form-group">
                       <label>Senha</label>
-                      <input type="password" class="form-control" name="senha" value="<c:out value='${usuario.senha}' />">
+                      <input type="password" class="form-control" name="senha" required value="<c:out value='${usuario.senha}' />">
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Atualizar</button>
