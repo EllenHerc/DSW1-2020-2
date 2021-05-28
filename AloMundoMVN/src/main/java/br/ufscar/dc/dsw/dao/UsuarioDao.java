@@ -34,14 +34,15 @@ public class UsuarioDao {
         comandoSql.setInt(1, id);
         ResultSet rs = comandoSql.executeQuery();
         
-        rs.first();
-        
-        UsuarioBean usu = new UsuarioBean();
-        usu.setId(rs.getInt("iduser"));
-        usu.setNome(rs.getString("nome"));
-        usu.setEmail(rs.getString("email"));
-        usu.setSenha(rs.getString("senha"));
-        usu.setIsAdmin(rs.getBoolean("isAdmin"));
+        UsuarioBean usu = null;
+        if(rs.next()) {
+            usu = new UsuarioBean();
+            usu.setId(rs.getInt("iduser"));
+            usu.setNome(rs.getString("nome"));
+            usu.setEmail(rs.getString("email"));
+            usu.setSenha(rs.getString("senha"));
+            usu.setIsAdmin(rs.getBoolean("isAdmin"));
+        }
         
         return usu;
     }
