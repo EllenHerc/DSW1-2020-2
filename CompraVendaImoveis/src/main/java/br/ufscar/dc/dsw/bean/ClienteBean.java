@@ -28,7 +28,6 @@ public class ClienteBean {
     }
 
     public ClienteBean() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void setCpf(Long cpf) {
