@@ -7,16 +7,22 @@
 	<caption>
 		Cadastrar Proposta
 	</caption>
+        <tr>
+		<td><label for="idimovel"> ID Imovel:
+		</label></td>
+		<td><input type="text" id="idimovel" name="idimovel" value="${imovel.id}" readonly style="background-color:gray; color:white" />
+                </td>
+	</tr>
 	<tr>
-		<td><label for="valor"> Valor
+		<td><label for="valor"> Valor Proposto
 		</label></td>
 		<td><input type="number" id="valor" name="valor" min=0
 			required value="" /></td>
 	</tr>
 	<tr>
-		<td><label for="pagamento"> Pagamento
+		<td><label for="pagamento"> Condições de Pagamento
 		</label></td>
-		<td><input type="text" id="pagamento" name="pagamento" required/></td>
+		<td><textarea rows="4" cols="50" id="pagamento" name="pagamento" required>Descreva as condições de pagamento...</textarea></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center"><input type="submit"

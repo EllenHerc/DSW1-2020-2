@@ -17,7 +17,7 @@
 
             <h1>Bem vindo ${requestScope.cliente.nome}</h1>
             <h4>
-                <a href="<%=contextPath%>/imoveis">
+                <a href="<%=contextPath%>/cliente/redirect/imoveis">
                     Buscar por Imovel
                 </a>
             </h4>
@@ -31,7 +31,6 @@
                         <th>Valor</th>
                         <th>Status</th>
                         <th>Imovel</th>
-                        <th>Ações</th>
                     </tr>
                     <c:forEach var="proposta" items="${requestScope.listaPropostas}">
                         <tr>
@@ -40,13 +39,7 @@
                             <td>${proposta.valor}</td>
                             <td>${proposta.status}</td>
                             <td><a href="<%=contextPath%>/cliente/proposta/imovel?id=${proposta.imovel.id}" target="_blank">${proposta.imovel.descricao}</a></td>
-                            <td><a href="<%=contextPath%>/cliente/proposta/edicao?id=${proposta.id}">
-                                Editar
-                            </a> &nbsp;&nbsp;&nbsp;&nbsp; 
-                            <a href="<%=contextPath%>/cliente/proposta/remocao?id=${proposta.id}"
-                               onclick="return confirm('Tem certeza de que deseja excluir esta proposta?');">
-                                Remover
-                            </a></td>
+                            
                         </tr>
                     </c:forEach>
                 </table>

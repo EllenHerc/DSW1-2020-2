@@ -33,7 +33,7 @@ import java.util.Date;
  *
  * @author ellen
  */
-@WebServlet(urlPatterns = {"/cliente/", "/cliente/proposta/*"})
+@WebServlet(urlPatterns = {"/cliente/", "/cliente/proposta/*", "/cliente/redirect/*"})
 public class PropostaController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -61,7 +61,6 @@ public class PropostaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        System.out.println(action);
         UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioLogado");
         Erro erros = new Erro();
 
@@ -77,6 +76,8 @@ public class PropostaController extends HttpServlet {
                     index(request, response);
                 } else if (action.equals("") || (action.equals("/lista"))) {
                     listaProposta(request, response, usuario.getEmail());
+                } else if (action.equals("/imoveis")) {
+                    listaImoveisCliente(request, response, usuario.getEmail());
                 }
             } catch (RuntimeException | IOException | ServletException e) {
                 throw new ServletException(e);
@@ -95,8 +96,8 @@ public class PropostaController extends HttpServlet {
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
-        Long idImovel = Long.parseLong(request.getParameter("idimovel"));
         
+        Long idImovel = Long.parseLong(request.getParameter("idimovel"));
         request.setAttribute("imovel", daoImovel.getById(idImovel));
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/formulario.jsp");
@@ -115,13 +116,12 @@ public class PropostaController extends HttpServlet {
 
         String pagamento = request.getParameter("pagamento");
         float valor = Float.parseFloat(request.getParameter("valor"));
-        ClienteBean cliente = daoCliente.consultarClienteEmail(email);
         Long idImovel = Long.parseLong(request.getParameter("idimovel"));
         ImovelBean imovel = daoImovel.getById(idImovel);
 	Date date = new Date();
         java.sql.Date dataSql = new java.sql.Date(date.getTime());
         
-        PropostaBean proposta = new PropostaBean(cliente, imovel, pagamento, valor, "NÃO ACEITO", dataSql);
+        PropostaBean proposta = new PropostaBean(daoCliente.consultarClienteEmail(email), imovel, pagamento, valor, "NÃO ACEITO", dataSql);
         if(daoProposta.verificaClienteImovel(proposta)){
             erros.add("Proposta não inserida! "
                     + "Você já possui uma proposta para este imovel.");
@@ -144,6 +144,16 @@ public class PropostaController extends HttpServlet {
         request.setAttribute("listaPropostas", listaPropostas);
         request.setAttribute("cliente", cliente);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/clienteHome.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void listaImoveisCliente(HttpServletRequest request, HttpServletResponse response, String email)
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+        
+        request.setAttribute("listaImoveis", daoImovel.getAll());
+        request.setAttribute("cliente", daoCliente.consultarClienteEmail(email));
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/listaImoveis.jsp");
         dispatcher.forward(request, response);
     }
 

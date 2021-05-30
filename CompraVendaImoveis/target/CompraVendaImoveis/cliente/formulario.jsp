@@ -32,7 +32,6 @@
         </c:if>
         <div align="center">
             <form action="insercao" method="post">
-                <input type="text" name="idimovel" value="${imovel.id}" disabled="">
                 <%@include file="campos.jsp"%>
             </form>
             <a href="lista">Voltar</a>

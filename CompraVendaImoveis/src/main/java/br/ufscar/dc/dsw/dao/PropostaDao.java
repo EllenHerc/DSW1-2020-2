@@ -88,7 +88,7 @@ public class PropostaDao {
         String sql = "SELECT * FROM proposta WHERE cliente_cpf = ? AND imovel_id = ?";
         try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
         comandoSql.setLong(1, proposta.getCliente().getCpf());
-        comandoSql.setLong(1, proposta.getImovel().getId());
+        comandoSql.setLong(2, proposta.getImovel().getId());
             try (ResultSet rs = comandoSql.executeQuery()) {
                 PropostaBean prop;
                 while (rs.next()) {

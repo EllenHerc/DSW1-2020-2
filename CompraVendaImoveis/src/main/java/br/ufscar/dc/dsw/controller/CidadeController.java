@@ -27,7 +27,7 @@ import java.io.PrintWriter;
  *
  * @author ellen
  */
-@WebServlet(urlPatterns = {"/buscaPorNome/*"})
+@WebServlet(urlPatterns = {"/buscaPorNome/*", "/cliente/redirect/imoveis/buscaPorNome/*"})
 public class CidadeController extends HttpServlet{
     
     private static final long serialVersionUID = 1L;
@@ -75,6 +75,8 @@ public class CidadeController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
             processRequest(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CidadeController.class.getName()).log(Level.SEVERE, null, ex);

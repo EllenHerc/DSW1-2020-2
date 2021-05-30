@@ -103,7 +103,8 @@ public class ImovelDao {
             String sql = "SELECT i.descricao, i.valor, i.cep, i.logradouro, i.numero, i.bairro, i.cidade_id, c.nome AS cidade, c.uf, i.imobiliaria_cnpj, im.nome AS imobiliaria"
                 + " FROM imovel i INNER JOIN cidade c ON c.id = i.cidade_id INNER JOIN imobiliaria im ON im.cnpj = i.imobiliaria_cnpj WHERE i.id = ?";
         ImovelBean imo = new ImovelBean();
-        try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
+        try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                        ResultSet.CONCUR_UPDATABLE)) {
             comandoSql.setLong(1, id);
                 try (ResultSet rs = comandoSql.executeQuery()) {
                     rs.first();

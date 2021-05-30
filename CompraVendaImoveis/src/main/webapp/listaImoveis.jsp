@@ -58,7 +58,7 @@
                         <a href="<%=contextPath%>/listaImoveis?id=${imovel.id}" class="btn btn-secondary">Visualizar Fotos</a>
                         <c:choose>
                             <c:when test="${requestScope.cliente != null}">
-                                <a href="<%=contextPath%>/cliente/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary">Realizar Proposta</a>
+                                <a href="<%=contextPath%>/cliente/proposta/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary">Realizar Proposta</a>
                             </c:when>                                
                         </c:choose>   
                   </div>
