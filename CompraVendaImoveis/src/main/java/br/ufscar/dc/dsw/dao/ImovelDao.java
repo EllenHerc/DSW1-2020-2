@@ -13,6 +13,7 @@ import br.ufscar.dc.dsw.conexao.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,29 @@ import java.util.List;
  * @author ellen
  */
 public class ImovelDao {
+    
+    public long CadastrarImovel(ImovelBean imo) throws ClassNotFoundException, SQLException{
+        long imovel = 0;
+        String sql = "INSERT INTO imovel (descricao, valor, logradouro, cep, numero, bairro, cidade_id, imobiliaria_cnpj) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
+         try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             comandoSql.setString(1, imo.getDescricao());
+             comandoSql.setFloat(2, imo.getValor());
+             comandoSql.setString(3, imo.getLogradouro());
+             comandoSql.setString(4, imo.getCep());
+             comandoSql.setString(5, imo.getNumero());
+             comandoSql.setString(6, imo.getBairro());
+             comandoSql.setLong(7, imo.getCidade().getId());
+             comandoSql.setLong(8, imo.getImobiliaria().getCnpj());
+             comandoSql.execute();
+             Conexao.getInstance().commit();
+             
+             final ResultSet rs = comandoSql.getGeneratedKeys();
+            if (rs.next()) {
+                imovel =  rs.getLong(1);
+            }     
+         }
+         return imovel;
+    }
     
     public List<ImovelBean> getAll() throws SQLException, ClassNotFoundException {
             String sql = "SELECT i.id, i.descricao, i.valor, i.cep, i.logradouro, i.numero, i.bairro, i.cidade_id, c.nome AS cidade, c.uf, i.imobiliaria_cnpj, im.nome AS imobiliaria"
@@ -36,7 +60,7 @@ public class ImovelDao {
                 imo.setValor(rs.getFloat("valor"));
                 imo.setCep(rs.getString("cep"));
                 imo.setLogradouro(rs.getString("logradouro"));
-                imo.setNumero(rs.getInt("numero"));
+                imo.setNumero(rs.getString("numero"));
                 imo.setBairro(rs.getString("bairro"));
                 
                 CidadeBean cid = new CidadeBean();
@@ -78,7 +102,7 @@ public class ImovelDao {
                         imo.setValor(rs.getFloat("valor"));
                         imo.setCep(rs.getString("cep"));
                         imo.setLogradouro(rs.getString("logradouro"));
-                        imo.setNumero(rs.getInt("numero"));
+                        imo.setNumero(rs.getString("numero"));
                         imo.setBairro(rs.getString("bairro"));
                         
                         ImobiliariaBean imobiliaria = new ImobiliariaBean();
@@ -115,7 +139,7 @@ public class ImovelDao {
                         imo.setValor(rs.getFloat("valor"));
                         imo.setCep(rs.getString("cep"));
                         imo.setLogradouro(rs.getString("logradouro"));
-                        imo.setNumero(rs.getInt("numero"));
+                        imo.setNumero(rs.getString("numero"));
                         imo.setBairro(rs.getString("bairro"));
                         
                         CidadeBean cidade = new CidadeBean();
@@ -151,7 +175,7 @@ public class ImovelDao {
                     imo.setValor(rs.getFloat("valor"));
                     imo.setCep(rs.getString("cep"));
                     imo.setLogradouro(rs.getString("logradouro"));
-                    imo.setNumero(rs.getInt("numero"));
+                    imo.setNumero(rs.getString("numero"));
                     imo.setBairro(rs.getString("bairro"));
 
                     ImobiliariaBean imobiliaria = new ImobiliariaBean();

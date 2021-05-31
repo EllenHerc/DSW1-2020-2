@@ -58,5 +58,23 @@ public class CidadeDao{
         return listaCidades;
     }
 
+    public CidadeBean getById(Long id) throws ClassNotFoundException, SQLException {
+        CidadeBean cidade = new CidadeBean();
+        String sql = "SELECT c.nome, c.uf FROM cidade c WHERE c.id = ?";
+        try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                        ResultSet.CONCUR_UPDATABLE)) {
+            comandoSql.setLong(1, id);
+            
+            try (ResultSet rs = comandoSql.executeQuery()) {
+                rs.first();
+                cidade.setId(id);
+                cidade.setNome(rs.getString("nome"));
+                cidade.setUf(rs.getString("uf"));
+                
+            }
+        }
+        return cidade;
+    }
+    
     
 }

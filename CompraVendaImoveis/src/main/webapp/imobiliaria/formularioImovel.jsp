@@ -6,20 +6,29 @@
 <html>
 
     <head>
-        <title>Cadastro Proposta</title>
+        <script>
+            function formatar(mascara, documento){
+              var i = documento.value.length;
+              var saida = mascara.substring(0,1);
+              var texto = mascara.substring(i)
+
+              if (texto.substring(0,1) != saida){
+                        documento.value += texto.substring(0,1);
+              }
+
+            }
+        </script>
+        <title>Cadastro de Imovel</title>
     </head>
 
     <body>
         <%
-            String contextPath = request.getContextPath().replace("/", "");
+            String contextPath = request.getContextPath();
         %>
         <div align="center">
             <h1>
-                Cadastro Proposta
+                Cadastro Imovel
             </h1>
-            <h4>
-                Imovel: ${imovel.descricao}
-            </h4>
         </div>
         <c:if test="${mensagens.existeErros}">
             <div id="erro">
@@ -31,8 +40,8 @@
             </div>
         </c:if>
         <div align="center">
-            <form action="insercao" method="post">
-                <%@include file="campos.jsp"%>
+            <form action="<%=contextPath%>/imobiliaria/imovel/insercaoImovel/" method="post">
+                <%@include file="camposImovel.jsp"%>
             </form>
             <a href="lista">Voltar</a>
         </div>

@@ -20,6 +20,9 @@
             <h4>
                 <a href="<%=contextPath%>/imobiliaria/proposta/">
                     Analisar Propostas
+                </a> - 
+                 <a href="<%=contextPath%>/imobiliaria/imovel/cadastrarImovel/">
+                     Cadastrar Imovel
                 </a>
             </h4>
             <br/>

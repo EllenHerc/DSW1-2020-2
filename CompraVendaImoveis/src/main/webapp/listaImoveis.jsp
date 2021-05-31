@@ -71,6 +71,14 @@
 		
 	</div>
         <br/>
-        <a href="index.jsp">Voltar</a>
+        <c:choose>
+            <c:when test="${requestScope.cliente != null}">
+		<a href="voltar">Voltar</a><br/>
+            </c:when>
+	    <c:otherwise>
+		<a href="<%=contextPath%>/index.jsp">Voltar</a>
+            </c:otherwise>
+	</c:choose>
+        
 </body>
 </html>

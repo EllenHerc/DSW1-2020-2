@@ -62,7 +62,7 @@ public class PropostaDao {
                         imo.setValor(rs.getFloat("valor"));
                         imo.setCep(rs.getString("cep"));
                         imo.setLogradouro(rs.getString("logradouro"));
-                        imo.setNumero(rs.getInt("numero"));
+                        imo.setNumero(rs.getString("numero"));
                         imo.setBairro(rs.getString("bairro"));
                         
                         ImobiliariaBean imobiliaria = new ImobiliariaBean();
@@ -107,7 +107,7 @@ public class PropostaDao {
                         imo.setValor(rs.getFloat("valor"));
                         imo.setCep(rs.getString("cep"));
                         imo.setLogradouro(rs.getString("logradouro"));
-                        imo.setNumero(rs.getInt("numero"));
+                        imo.setNumero(rs.getString("numero"));
                         imo.setBairro(rs.getString("bairro"));                                               
                         
                         CidadeBean cidade = new CidadeBean();
@@ -166,7 +166,7 @@ public class PropostaDao {
                     imo.setValor(rs.getFloat("valor"));
                     imo.setCep(rs.getString("cep"));
                     imo.setLogradouro(rs.getString("logradouro"));
-                    imo.setNumero(rs.getInt("numero"));
+                    imo.setNumero(rs.getString("numero"));
                     imo.setBairro(rs.getString("bairro"));
 
                     ImobiliariaBean imobiliaria = new ImobiliariaBean();

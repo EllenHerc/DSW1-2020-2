@@ -15,7 +15,7 @@ public class ImovelBean {
     private Long id;
     private String cep;
     private String logradouro;
-    private int numero;
+    private String numero;
     private String bairro;
     private CidadeBean cidade;
     private String descricao;
@@ -23,7 +23,7 @@ public class ImovelBean {
     private ImobiliariaBean imobiliaria;
     private List<FotoBean> fotos;
 
-    public ImovelBean(Long id, String cep, String logradouro, int numero, String bairro, CidadeBean cidade, String descricao, float valor, ImobiliariaBean imobiliaria) {
+    public ImovelBean(Long id, String cep, String logradouro, String numero, String bairro, CidadeBean cidade, String descricao, float valor, ImobiliariaBean imobiliaria) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -34,6 +34,18 @@ public class ImovelBean {
         this.valor = valor;
         this.imobiliaria = imobiliaria;
     }
+
+    public ImovelBean(String cep, String logradouro, String numero, String bairro, CidadeBean cidade, String descricao, float valor, ImobiliariaBean imobiliaria) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.imobiliaria = imobiliaria;
+    }
+    
 
     public void setFotos(List<FotoBean> fotos) {
         this.fotos = fotos;
@@ -59,7 +71,7 @@ public class ImovelBean {
         this.logradouro = logradouro;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -97,7 +109,7 @@ public class ImovelBean {
         return logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 

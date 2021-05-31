@@ -66,7 +66,7 @@ public class FotoDao {
                         imo.setId(rs.getLong("imovel_id"));
                         imo.setCep(rs.getString("cep"));
                         imo.setLogradouro(rs.getString("logradouro"));
-                        imo.setNumero(rs.getInt("numero"));
+                        imo.setNumero(rs.getString("numero"));
                         imo.setBairro(rs.getString("bairro"));
                         
                         CidadeBean cid = new CidadeBean();

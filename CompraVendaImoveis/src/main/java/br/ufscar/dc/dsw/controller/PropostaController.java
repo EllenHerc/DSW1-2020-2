@@ -9,16 +9,14 @@ import br.ufscar.dc.dsw.bean.ClienteBean;
 import br.ufscar.dc.dsw.bean.ImobiliariaBean;
 import br.ufscar.dc.dsw.bean.ImovelBean;
 import br.ufscar.dc.dsw.bean.PropostaBean;
-import br.ufscar.dc.dsw.bean.UsuarioBean;
-import br.ufscar.dc.dsw.dao.ClienteDao;
+
 import br.ufscar.dc.dsw.dao.ImovelDao;
 import br.ufscar.dc.dsw.dao.PropostaDao;
 import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.util.EmailService;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,19 +34,17 @@ import javax.mail.internet.InternetAddress;
  *
  * @author ellen
  */
-@WebServlet(urlPatterns = {"/cliente/", "/cliente/proposta/*", "/cliente/redirect/*", "/imobiliaria/proposta/", "/imobiliaria/proposta/*"})
+@WebServlet(urlPatterns = {"/cliente/", "/cliente/proposta/*", "/cliente/redirect/*", "/cliente/redirect/", "/imobiliaria/proposta/", "/imobiliaria/proposta/*"})
 public class PropostaController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     private PropostaDao daoProposta;
-    private ClienteDao daoCliente;
     private ImovelDao daoImovel;
 
     @Override
     public void init() {
         daoProposta = new PropostaDao();
-        daoCliente = new ClienteDao();
         daoImovel = new ImovelDao();
     }
 
