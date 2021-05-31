@@ -49,7 +49,7 @@
                                 <td>Valor: </td><td>${imovel.valor}</td>
                             </tr>
                             <tr>
-                                <td>Endereço: </td><td>${imovel.logradouro}, ${imovel.numero} - ${imovel.bairro}</td>
+                                <td>Endereço: </td><td><br/> ${imovel.logradouro}, ${imovel.numero} - ${imovel.bairro}</td>
                             </tr>
                             <tr>
                                 <td></td><td>${imovel.cidade.nome} - ${imovel.cidade.uf}, ${imovel.cep}</td>

@@ -74,9 +74,7 @@ public class CidadeController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        try {            
             processRequest(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CidadeController.class.getName()).log(Level.SEVERE, null, ex);

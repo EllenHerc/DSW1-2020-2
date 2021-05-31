@@ -15,6 +15,15 @@ public class UsuarioBean {
     private String senha;
     private String papel;
 
+    public UsuarioBean(Long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+
+    public UsuarioBean(String email) {
+        this.email = email;
+    }
+
     public UsuarioBean(Long id, String email, String senha, String papel) {
         this.id = id;
         this.email = email;

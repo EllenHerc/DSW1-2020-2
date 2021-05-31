@@ -7,6 +7,7 @@ package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.bean.CidadeBean;
 import br.ufscar.dc.dsw.bean.ImovelBean;
+import br.ufscar.dc.dsw.bean.UsuarioBean;
 import br.ufscar.dc.dsw.dao.ImovelDao;
 import javax.servlet.annotation.WebServlet;
 
@@ -64,6 +65,7 @@ public class ImoveisListController extends HttpServlet{
 
     private void lista(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
+        
         List<ImovelBean> listaImoveis = null;
         String strCidade = request.getParameter("cidade");
         if(strCidade==null){

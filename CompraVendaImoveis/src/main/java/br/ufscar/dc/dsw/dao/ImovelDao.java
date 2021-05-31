@@ -99,6 +99,43 @@ public class ImovelDao {
             return listaImoveis;
     }
     
+    public List<ImovelBean> getByImobiliaria(ImobiliariaBean imobiliaria) throws SQLException, ClassNotFoundException {
+            String sql = "SELECT i.id, i.descricao, i.valor, i.cep, i.logradouro, i.numero, i.bairro, i.cidade_id, c.nome AS cidade, c.uf, i.imobiliaria_cnpj"
+                + " FROM imovel i INNER JOIN cidade c ON c.id = i.cidade_id INNER JOIN imobiliaria im ON im.cnpj = i.imobiliaria_cnpj WHERE i.imobiliaria_cnpj = ?";
+            List<ImovelBean> listaImoveis;
+        try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
+            comandoSql.setLong(1, imobiliaria.getCnpj());
+                try (ResultSet rs = comandoSql.executeQuery()) {
+                    ImovelBean imo;
+                    listaImoveis = new ArrayList<>();
+                    while (rs.next()) {
+                        imo = new ImovelBean();
+                        imo.setId(rs.getLong("id"));
+                        imo.setDescricao(rs.getString("descricao"));
+                        imo.setValor(rs.getFloat("valor"));
+                        imo.setCep(rs.getString("cep"));
+                        imo.setLogradouro(rs.getString("logradouro"));
+                        imo.setNumero(rs.getInt("numero"));
+                        imo.setBairro(rs.getString("bairro"));
+                        
+                        CidadeBean cidade = new CidadeBean();
+                        cidade.setNome(rs.getString("cidade"));
+                        cidade.setId(rs.getLong("cidade_id"));
+                        cidade.setUf(rs.getString("uf"));
+                                                
+                        FotoDao fotoDao = new FotoDao();
+                        List<FotoBean> ListaFoto = fotoDao.consultarFotosPorImovel(imo.getId());
+                        
+                        imo.setImobiliaria(imobiliaria);
+                        imo.setCidade(cidade);
+                        imo.setFotos(ListaFoto);
+                        
+                        listaImoveis.add(imo);
+                    }   }
+        }
+            return listaImoveis;
+    }
+    
     public ImovelBean getById(Long id) throws SQLException, ClassNotFoundException {
             String sql = "SELECT i.descricao, i.valor, i.cep, i.logradouro, i.numero, i.bairro, i.cidade_id, c.nome AS cidade, c.uf, i.imobiliaria_cnpj, im.nome AS imobiliaria"
                 + " FROM imovel i INNER JOIN cidade c ON c.id = i.cidade_id INNER JOIN imobiliaria im ON im.cnpj = i.imobiliaria_cnpj WHERE i.id = ?";

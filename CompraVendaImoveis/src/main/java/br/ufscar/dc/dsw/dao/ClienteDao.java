@@ -33,7 +33,7 @@ public class ClienteDao {
     }
     
     public ClienteBean consultarCliente(Long cpf) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT c.cpf, c.nome, c.nascimento, c.sexo, c.telefone, c.user_email, u.id, u.senha, u.papel FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.cpf = ?";
+        String sql = "SELECT c.cpf, c.nome, c.nascimento, c.sexo, c.telefone, c.user_email, u.id FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.cpf = ?";
         ClienteBean cli;
          try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
              comandoSql.setLong(1, cpf);
@@ -48,8 +48,6 @@ public class ClienteDao {
                 UsuarioBean usu = new UsuarioBean();
                 usu.setId(rs.getLong("id"));
                 usu.setEmail(rs.getString("user_email"));
-                usu.setSenha(rs.getString("senha"));
-                usu.setPapel(rs.getString("papel"));
                 cli.setUser(usu);
             }
          }
