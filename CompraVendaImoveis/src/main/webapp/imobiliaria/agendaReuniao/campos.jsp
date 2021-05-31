@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <table border="1">
+        <caption>
+		Agendamento de reunião
+	</caption>
         <tr>
 		<td><label for="idimovel"> ID proposta:
 		</label></td>
@@ -11,15 +14,22 @@
                 </td>
 	</tr>
 	<tr>
-		<td><label for="valor"> Valor da Contra-Proposta
+		<td><label for="data"> Data
 		</label></td>
-		<td><input type="number" id="valor" name="valor" min=0
+		<td><input type="date" id="data" name="data"
 			required value="" /></td>
 	</tr>
 	<tr>
-		<td><label for="pagamento"> Condições de Pagamento da Contra-Proposta
+		<td><label for="hora"> Hora
 		</label></td>
-		<td><textarea rows="4" cols="50" id="pagamento" name="pagamento" required>Descreva as condições de pagamento...</textarea></td>
+		<td><input type="time" id="hora" name="hora"
+			required value="" /></td>
+	</tr>
+        <tr>
+		<td><label for="link"> Link da videoconferência
+		</label></td>
+		<td><input type="text" id="link" name="link"
+			required value="" /></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center"><input type="submit"

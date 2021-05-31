@@ -5,7 +5,7 @@
 
 <table border="1">
 	<caption>
-		Cadastrar Proposta
+		Cadastro de Proposta
 	</caption>
         <tr>
 		<td><label for="idimovel"> ID Imovel:

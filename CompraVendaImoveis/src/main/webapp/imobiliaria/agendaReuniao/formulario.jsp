@@ -6,7 +6,7 @@
 <html>
 
     <head>
-        <title>Envio de contra-proposta</title>
+        <title>Agendamento de Reunião</title>
     </head>
 
     <body>
@@ -15,7 +15,7 @@
         %>
         <div align="center">
             <h1>
-                Envio de contra-proposta
+                Proposta Aceita
             </h1>
             <h4>
                 Imóvel: ${imovel.descricao}<br>
@@ -37,7 +37,7 @@
             </div>
         </c:if>
         <div align="center">
-            <form action="enviaContraProposta" method="post">
+            <form action="enviaAgendamentoReuniao" method="post">
                 <%@include file="campos.jsp"%>
             </form>
             <a href="lista">Cancelar envio</a>

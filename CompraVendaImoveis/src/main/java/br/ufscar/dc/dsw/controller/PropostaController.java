@@ -93,11 +93,13 @@ public class PropostaController extends HttpServlet {
                 } else if (action.equals("/enviarContraProposta")) {
                     apresentaFormContraProposta(request, response);
                 }else if (action.equals("/naoAceitar")) {
-                    naoAceitar(request, response);
+                    naoAceitaProposta(request, response, imobiliaria);
                 } else if (action.equals("") || (action.equals("/lista"))) {
                     listaPropostaImobiliaria(request, response, imobiliaria);
                 } else if (action.equals("/enviaContraProposta")) {
                     enviaContraProposta(request, response, imobiliaria);
+                } else if (action.equals("/enviaAgendamentoReuniao")) {
+                    enviaAgendamentoReuniao(request, response, imobiliaria);
                 }
             } catch (RuntimeException | IOException | ServletException e) {
                 throw new ServletException(e);
@@ -184,7 +186,7 @@ public class PropostaController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("idproposta"));
         request.setAttribute("proposta", daoProposta.getById(id));
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/proposta/agendaReuniao/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/imobiliaria/agendaReuniao/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -200,11 +202,28 @@ public class PropostaController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void naoAceitar(HttpServletRequest request, HttpServletResponse response)
+    private void naoAceitaProposta(HttpServletRequest request, HttpServletResponse response, ImobiliariaBean imobiliaria)
        throws ServletException, IOException, SQLException, ClassNotFoundException {
         
-        Long id = Long.parseLong(request.getParameter("idproposta"));
-        daoProposta.atualizaStatus("NÃO ACEITO", id);
+        Long idProposta = Long.parseLong(request.getParameter("idproposta"));
+        daoProposta.atualizaStatus("NÃO ACEITO", idProposta);
+                
+        PropostaBean proposta = daoProposta.getById(idProposta);
+        
+        EmailService service = new EmailService();
+		
+        InternetAddress from = new InternetAddress(imobiliaria.getUser().getEmail(), imobiliaria.getNome());
+        InternetAddress to = new InternetAddress(proposta.getCliente().getUser().getEmail(), proposta.getCliente().getNome());
+
+        String subject1 =  "Proposta recusada para o imóvel "+proposta.getImovel().getDescricao();
+
+        String line1 = "Sua proposta para o imovel: "+proposta.getImovel().getDescricao()+" foi recusada pela imobiliaria: "+imobiliaria.getNome();
+        String line2 = "Valor da proposta: R$ "+proposta.getValor();
+        String line3 = "Condição de pagamento: "+proposta.getPagamento();
+        
+        String body = line1 + "\n" + line2 + "\n" + line3;
+
+        service.send(from, to, subject1, body);
                
         response.sendRedirect("lista");
     }
@@ -239,6 +258,37 @@ public class PropostaController extends HttpServlet {
         String line2 = "Valor da contra-proposta: R$ "+valor;
         String line3 = "Condição de pagamento da contra-proposta: "+pagamento;
         String body = line1 + "\n" + line2 + "\n" + line3;
+
+        service.send(from, to, subject1, body);
+        
+        response.sendRedirect("lista");
+    }
+    
+    private void enviaAgendamentoReuniao(HttpServletRequest request, HttpServletResponse response, ImobiliariaBean imobiliaria) 
+            throws ServletException, IOException, SQLException, ClassNotFoundException { 
+        
+        String data = request.getParameter("data");
+        
+        String hora = request.getParameter("hora");
+        String link = request.getParameter("link");
+        Long idProposta = Long.parseLong(request.getParameter("idproposta"));
+        daoProposta.atualizaStatus("ACEITO", idProposta);
+        PropostaBean proposta = daoProposta.getById(idProposta);
+        
+        EmailService service = new EmailService();
+		
+        InternetAddress from = new InternetAddress(imobiliaria.getUser().getEmail(), imobiliaria.getNome());
+        InternetAddress to = new InternetAddress(proposta.getCliente().getUser().getEmail(), proposta.getCliente().getNome());
+
+        String subject1 =  "Proposta Aceita para o imóvel "+proposta.getImovel().getDescricao();
+
+        String line1 = "Sua proposta para o imovel: "+proposta.getImovel().getDescricao()+" foi aceita pela imobiliaria: "+imobiliaria.getNome();
+        String line2 = "Valor da proposta: R$ "+proposta.getValor();
+        String line3 = "Condição de pagamento: "+proposta.getPagamento();
+        String line4 = "Uma reunião (via videoconferência) foi agendada pela imobiliaria para acertar os detalhes da compra do imóvel ";
+        String line5 = "Data: "+data+"\nHorario: "+hora+"\nLink da reunião (videoconferência): "+link;
+        
+        String body = line1 + "\n" + line2 + "\n" + line3 + "\n\n" + line4 + "\n" + line5;
 
         service.send(from, to, subject1, body);
         
