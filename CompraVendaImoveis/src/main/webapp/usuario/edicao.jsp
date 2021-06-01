@@ -15,37 +15,25 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
-                <h1><fmt:message key="register"/></h1>
-                <form method="post" action="/<%= contextPath%>/cadastro">
+                <h1><fmt:message key="update"/></h1>
+                <form method="post" action="/<%= contextPath%>/edicao">
                     <div class="form-group">
                       <label><fmt:message key="name"/></label>
-                      <input type="text" class="form-control" name="nome">
+                      <input type="text" class="form-control" name="nome" value="<c:out value='${usuario.nome}' />">
                     </div>
                     <div class="form-group">
-                      <label>CPF</label>
-                      <input type="text" class="form-control" name="cpf">
-                    </div>
-                    <div class="form-group">
-                      <label><fmt:message key="born"/> dd/mm/aaaa</label>
-                      <input type="text" class="form-control" name="nascimento">
+                      <label><fmt:message key="born"/></label>
+                      <input type="text" class="form-control" name="nome" value="<c:out value='${usuario.nascimento}' />">
                     </div>
                     <div class="form-group">
                       <label><fmt:message key="phone"/></label>
-                      <input type="text" class="form-control" name="telefone">
+                      <input type="text" class="form-control" name="telefone" value="<c:out value='${usuario.telefone}' />">
                     </div>
                     <div class="form-group">
                       <label><fmt:message key="gender"/></label>
-                      <input type="text" class="form-control" name="sexo">
+                      <input type="text" class="form-control" name="sexo" value="<c:out value='${usuario.sexo}' />">
                     </div>
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" class="form-control" name="email">
-                    </div>
-                    <div class="form-group">
-                      <label><fmt:message key="password"/></label>
-                      <input type="password" class="form-control" name="senha">
-                    </div>
-                    <button type="submit" class="btn btn-primary"><fmt:message key="register"/></button>
+                    <button type="submit" class="btn btn-primary"><fmt:message key="update"/></button>
                 </form>
             </div>
         </div>

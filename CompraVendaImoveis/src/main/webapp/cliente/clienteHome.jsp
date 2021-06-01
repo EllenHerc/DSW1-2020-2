@@ -46,5 +46,7 @@
             </div>
             <br/>
             <a href="<%=contextPath%>/index.jsp">Sair</a>
+            <a href="<%=contextPath%>/edicao">Editar meus dados</a>
+            <a href="<%=contextPath%>/remocao">Excluir cadasro</a>
     </body>
 </html>

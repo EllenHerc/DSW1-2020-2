@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.controller;
 
+import br.ufscar.dc.dsw.bean.ClienteBean;
 import br.ufscar.dc.dsw.bean.UsuarioBean;
+import br.ufscar.dc.dsw.dao.ClienteDao;
 import br.ufscar.dc.dsw.dao.UsuarioDao;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,11 +32,13 @@ public class UsuarioRemoverController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // TODO : verificar se esta logado e se é o proprietario dos dados (id parametro == id logado)
-            Long id = Long.parseLong(req.getParameter("id"));           
+             ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
             
             UsuarioDao usuarioDao = new UsuarioDao();
-            usuarioDao.excluirUsuario(id);
+            usuarioDao.excluirUsuario(cliente.getUser().getId());
+            
+            ClienteDao clienteDao = new ClienteDao();
+            clienteDao.excluirCliente(cliente.getCpf());
             
             resp.sendRedirect("index.jsp");
         } catch (SQLException | ClassNotFoundException ex) {

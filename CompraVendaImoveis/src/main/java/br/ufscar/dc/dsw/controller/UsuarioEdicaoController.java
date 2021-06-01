@@ -1,9 +1,14 @@
 package br.ufscar.dc.dsw.controller;
 
+import br.ufscar.dc.dsw.bean.ClienteBean;
 import br.ufscar.dc.dsw.bean.UsuarioBean;
+import br.ufscar.dc.dsw.dao.ClienteDao;
 import br.ufscar.dc.dsw.dao.UsuarioDao;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -29,47 +34,45 @@ public class UsuarioEdicaoController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            // TODO : verificar se esta logado e se é o proprietario dos dados (id parametro == id logado)
-            Long id = Long.parseLong(req.getParameter("id"));
-            UsuarioDao usuarioDao = new UsuarioDao();
-            
-            String URL = "usuario/edicao.jsp";
-            UsuarioBean usuario = usuarioDao.consultarUsuario(id);
-            
-            RequestDispatcher dispatcher = req.getRequestDispatcher(URL + "?id= "+ usuario.getId());
-            req.setAttribute("usuario", usuario);
-            dispatcher.forward(req, resp);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioEdicaoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String URL = "usuario/edicao.jsp";
+        ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
+        req.setAttribute("usuario", cliente);
+        RequestDispatcher dispatcher = req.getRequestDispatcher(URL);
+        dispatcher.forward(req, resp);
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // recuperar parametros de cliente e usuario conforme as classes BEAN
-        /*try {
+        try {
             req.setCharacterEncoding("UTF-8");
 
-            int id = Integer.parseInt(req.getParameter("id"));
             String nome = req.getParameter("nome");
-            String email = req.getParameter("email");
-            String senha = req.getParameter("senha");
-
-            UsuarioDao usuarioDao = new UsuarioDao();
-            UsuarioBean usuario = usuarioDao.consultarUsuario(id);
+            String nascimento = req.getParameter("nascimento");
+            String telefone = req.getParameter("telefone");
+            String sexo = req.getParameter("sexo");
             
-
-            usuario.setEmail(email);
-            usuario.setNome(nome);
-            usuario.setSenha(senha);
-
-            usuarioDao.alterarUsuario(usuario);
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+            java.sql.Date data = null;
+            try {
+                data = new java.sql.Date(fmt.parse(nascimento).getTime());
+            } catch (ParseException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
+            
+            cliente.setNome(nome);
+            cliente.setTelefone(telefone);
+            cliente.setSexo(sexo);
+            cliente.setNascimento(data);
+            
+            ClienteDao clienteDao = new ClienteDao();
+            clienteDao.alterarCliente(cliente);
 
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UsuarioEdicaoController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        resp.sendRedirect("index.jsp");
+        }
+        resp.sendRedirect("cliente/clienteHome.jsp");
     }
     
 }

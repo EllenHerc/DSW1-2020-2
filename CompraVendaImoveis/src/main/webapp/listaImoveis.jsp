@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -25,14 +26,15 @@
         <title>Imoveis</title>
     </head>
     <body>
+    <fmt:bundle basename="messages">
         <%
             String contextPath = request.getContextPath();
         %>
         <div align="center">
             
             <div class="ui-widget">
-                <label for="cidade">Buscar por Cidade</label>
-                <input id="cidade" name="cidade" placeholder="Digite o nome da cidade">
+                <label for="cidade"><fmt:message key="SearchByCity"/></label>
+                <input id="cidade" name="cidade" placeholder="<fmt:message key="name"/>">
             </div>
         </div>
         <br/>
@@ -46,10 +48,10 @@
                     <h5 class="card-title">${imovel.descricao}</h5>
                         <table border="0" class="card-text">
                             <tr>
-                                <td>Valor: </td><td>${imovel.valor}</td>
+                                <td><fmt:message key="value"/>: </td><td>${imovel.valor}</td>
                             </tr>
                             <tr>
-                                <td>Endereço: </td><td><br/> ${imovel.logradouro}, ${imovel.numero} - ${imovel.bairro}</td>
+                                <td><fmt:message key="address"/>: </td><td><br/> ${imovel.logradouro}, ${imovel.numero} - ${imovel.bairro}</td>
                             </tr>
                             <tr>
                                 <td></td><td>${imovel.cidade.nome} - ${imovel.cidade.uf}, ${imovel.cep}</td>
@@ -58,7 +60,7 @@
                         <a href="<%=contextPath%>/listaImoveis?id=${imovel.id}" class="btn btn-secondary">Visualizar Fotos</a>
                         <c:choose>
                             <c:when test="${requestScope.cliente != null}">
-                                <a href="<%=contextPath%>/cliente/proposta/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary">Realizar Proposta</a>
+                                <a href="<%=contextPath%>/cliente/proposta/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary"><fmt:message key="offer"/></a>
                             </c:when>                                
                         </c:choose>   
                   </div>
@@ -76,9 +78,9 @@
 		<a href="voltar">Voltar</a><br/>
             </c:when>
 	    <c:otherwise>
-		<a href="<%=contextPath%>/index.jsp">Voltar</a>
+		<a href="<%=contextPath%>/index.jsp"><fmt:message key="back"/></a>
             </c:otherwise>
 	</c:choose>
-        
+</fmt:bundle>        
 </body>
 </html>
