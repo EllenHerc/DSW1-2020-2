@@ -74,7 +74,7 @@ public class LoginController extends HttpServlet{
                                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     request.getSession().setAttribute("clienteLogado", cliente);
-                                    response.sendRedirect("cliente/");
+                                    response.sendRedirect("cliente/clienteHome.jsp");
                                     break;
                                 case "IMOBILIARIA":
                                     ImobiliariaDao daoImobiliaria = new ImobiliariaDao();

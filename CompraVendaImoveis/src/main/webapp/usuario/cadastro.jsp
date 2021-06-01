@@ -14,11 +14,27 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
-                <h1>Cadastro de usuario</h1>
+                <h1>Cadastro de clientes</h1>
                 <form method="post" action="/<%= contextPath%>/cadastro">
                     <div class="form-group">
                       <label>Nome</label>
                       <input type="text" class="form-control" name="nome">
+                    </div>
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" class="form-control" name="cpf">
+                    </div>
+                    <div class="form-group">
+                      <label>Data de nascimento dd/mm/aaaa</label>
+                      <input type="text" class="form-control" name="nascimento">
+                    </div>
+                    <div class="form-group">
+                      <label>Telefone</label>
+                      <input type="text" class="form-control" name="telefone">
+                    </div>
+                    <div class="form-group">
+                      <label>Sexo</label>
+                      <input type="text" class="form-control" name="sexo">
                     </div>
                     <div class="form-group">
                       <label>Email</label>
@@ -27,10 +43,6 @@
                     <div class="form-group">
                       <label>Senha</label>
                       <input type="password" class="form-control" name="senha">
-                    </div>
-                    <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" name="isAdmin" value="1">
-                      <label class="form-check-label">Administrador</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>

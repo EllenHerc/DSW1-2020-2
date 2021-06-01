@@ -19,6 +19,7 @@
             </c:when>
 	    <c:otherwise>
 		<a href="login">Login</a><br/>
+                <a href="cadastro">Cadastro</a><br/>
             </c:otherwise>
 	</c:choose>
     </body>

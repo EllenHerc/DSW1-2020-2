@@ -7,6 +7,9 @@ import br.ufscar.dc.dsw.dao.UsuarioDao;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -62,13 +65,21 @@ public class UsuarioController extends HttpServlet{
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+        java.sql.Date data = null;
+        try {
+            data = new java.sql.Date(fmt.parse(nascimento).getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         /*insere cliente com referencia ao usuario*/
         ClienteBean cliente = new ClienteBean();
         cliente.setNome(nome);
         cliente.setCpf(Long.parseLong(cpf));
         cliente.setTelefone(telefone);
         cliente.setSexo(sexo);
-        cliente.setNascimento(Date.valueOf(nascimento));
+        cliente.setNascimento(data);
         cliente.setUser(usuario);
         
         ClienteDao clienteDao = new ClienteDao();
