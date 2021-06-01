@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -10,6 +11,7 @@
         <title>Página do Cliente</title>
     </head>
     <body>
+    <fmt:bundle basename="messages">
         <%
             String contextPath = request.getContextPath();
         %>
@@ -18,19 +20,19 @@
             <h1>Bem vindo ${requestScope.cliente.nome}</h1>
             <h4>
                 <a href="<%=contextPath%>/cliente/redirect/imoveis">
-                    Buscar por Imovel
+                    <fmt:message key="searchProperty"/>
                 </a>
             </h4>
             <br/>
             <div align="center">
                 <table border="1">
-                    <caption>Propostas Realizadas</caption>
+                    <caption><fmt:message key="myOffers"/></caption>
                     <tr>
-                        <th>Data Emissão</th>
-                        <th>Condição de Pagamento</th>                        
-                        <th>Valor</th>
+                        <th><fmt:message key="emissionDate"/></th>
+                        <th><fmt:message key="paymentConditions"/></th>                        
+                        <th><fmt:message key="value"/></th>
                         <th>Status</th>
-                        <th>Imovel</th>
+                        <th><fmt:message key="property"/></th>
                     </tr>
                     <c:forEach var="proposta" items="${requestScope.listaPropostas}">
                         <tr>
@@ -45,8 +47,9 @@
                 </table>
             </div>
             <br/>
-            <a href="<%=contextPath%>/index.jsp">Sair</a>
-            <a href="<%=contextPath%>/edicao">Editar meus dados</a>
-            <a href="<%=contextPath%>/remocao">Excluir cadasro</a>
+            <a href="<%=contextPath%>/index.jsp"><fmt:message key="logout"/></a>
+            <a href="<%=contextPath%>/edicao"><fmt:message key="changeMe"/></a>
+            <a href="<%=contextPath%>/remocao"><fmt:message key="removeMe"/></a>
+    </fmt:bundle>
     </body>
 </html>

@@ -2,9 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
-
+<fmt:bundle basename="messages">
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -34,7 +34,7 @@
             });
         });
         </script>
-        <title>Cadastro de Imovel</title>
+        <title><fmt:message key="properties"/> <fmt:message key="register"/></title>
     </head>
 
     <body>
@@ -43,7 +43,7 @@
         %>
         <div align="center">
             <h1>
-                Cadastrar fotos
+                <fmt:message key="pictures"/> 
             </h1>
         </div>
         <c:if test="${mensagens.existeErros}">
@@ -67,13 +67,13 @@
               </div>
               <a href="javascript:void(0)" id="adicionarcampo" class="btn btn-sm btn-info">Adicionar Foto</a>
               <br/><br/><div align="center"><input class="btn btn-sm btn-success" type="submit"
-                                              value="Enviar Fotos" /></div>
+                                              value="<fmt:message key="send"/>" /></div>
             </form>
             </div>
         <div align="center">
 
-            <a href="lista">Voltar</a>
+            <a href="lista"><fmt:message key="back"/></a>
         </div>
     </body>
-
+</fmt:bundle>
 </html>

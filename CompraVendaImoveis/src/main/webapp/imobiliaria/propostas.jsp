@@ -2,7 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
+<fmt:bundle basename="messages">
     <head>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,7 +26,6 @@
             }
         }
         </script>
-        <title>Página da Imobiliária</title>
     </head>
     <body>
         <%
@@ -37,16 +38,16 @@
         </div>
         <div align="center">
                 <table class="table table-striped">
-                    <caption>Propostas</caption>
+                    <caption><fmt:message key="offer2"/></caption>
                     <tr>
-                        <th>Data Emissão</th>
-                        <th>Condição de Pagamento</th>                        
-                        <th>Valor</th>                        
-                        <th>Cliente</th>    
-                        <th>CPF Cliente</th>
-                        <th>Imovel</th>
+                        <th><fmt:message key="date"/></th>
+                        <th><fmt:message key="paymentConditions"/></th>                        
+                        <th><fmt:message key="value"/></th>                        
+                        <th><fmt:message key="client"/></th>    
+                        <th>CPF</th>
+                        <th><fmt:message key="property"/></th>
                         <th>Status</th>
-                        <th colspan="2">Ações</th>
+                        <th colspan="2"><fmt:message key="actions"/></th>
                     </tr>
                     <c:forEach var="proposta" items="${requestScope.listaPropostas}">
                         <tr>
@@ -70,4 +71,5 @@
             <br/>
             <a href="<%=contextPath%>/imobiliaria/">Voltar</a>
     </body>
+</fmt:bundle>
 </html>

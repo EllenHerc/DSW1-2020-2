@@ -2,11 +2,11 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
-
+<fmt:bundle basename="messages">
     <head>
-        <title>Agendamento de Reunião</title>
+        <title><fmt:message key="meetingSchedule"/></title>
     </head>
 
     <body>
@@ -15,14 +15,14 @@
         %>
         <div align="center">
             <h1>
-                Proposta Aceita
+                <fmt:message key="offerAcepted"/>
             </h1>
             <h4>
-                Imóvel: ${imovel.descricao}<br>
-                Valor da Proposta: ${proposta.valor}<br>
-                Condição de Pagamento: ${proposta.pagamento}<br>
-                Nome do Cliente: ${proposta.cliente.nome}<br>
-                Telefone: ${proposta.cliente.telefone}<br>
+                <fmt:message key="property"/>: ${imovel.descricao}<br>
+                <fmt:message key="value"/>: ${proposta.valor}<br>
+                <fmt:message key="paymentConditions"/>: ${proposta.pagamento}<br>
+                <fmt:message key="clientName"/>: ${proposta.cliente.nome}<br>
+                <fmt:message key="phone"/>: ${proposta.cliente.telefone}<br>
                 Email: ${proposta.cliente.user.email}<br>
                 CPF: ${proposta.cliente.cpf}                
             </h4>
@@ -40,8 +40,8 @@
             <form action="enviaAgendamentoReuniao" method="post">
                 <%@include file="campos.jsp"%>
             </form>
-            <a href="lista">Cancelar envio</a>
+            <a href="lista"><fmt:message key="cancel"/></a>
         </div>
     </body>
-
+</fmt:bundle>
 </html>

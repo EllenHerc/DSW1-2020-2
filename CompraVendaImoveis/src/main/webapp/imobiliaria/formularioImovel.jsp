@@ -2,9 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
-
+<fmt:bundle basename="messages">
     <head>
         <script>
             function formatar(mascara, documento){
@@ -27,7 +27,7 @@
         %>
         <div align="center">
             <h1>
-                Cadastro Imovel
+                <fmt:message key="properties"/> <fmt:message key="register"/>
             </h1>
         </div>
         <c:if test="${mensagens.existeErros}">
@@ -43,8 +43,8 @@
             <form action="<%=contextPath%>/imobiliaria/imovel/insercaoImovel/" method="post">
                 <%@include file="camposImovel.jsp"%>
             </form>
-            <a href="lista">Voltar</a>
+            <a href="lista"><fmt:message key="back"/></a>
         </div>
     </body>
-
+</fmt:bundle>
 </html>
