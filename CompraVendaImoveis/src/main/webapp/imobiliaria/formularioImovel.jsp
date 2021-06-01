@@ -18,7 +18,7 @@
 
             }
         </script>
-        <title>Cadastro de Imovel</title>
+        <title><fmt:message key="properties"/> <fmt:message key="register"/></title>
     </head>
 
     <body>

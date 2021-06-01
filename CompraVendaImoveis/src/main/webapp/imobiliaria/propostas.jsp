@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script>
         function mensagem(id) {
-            var name=confirm("Proposta não aceita! \r\n\r\nEnviar Contra-proposta ao cliente?");
+            var name=confirm("<fmt:message key="notAceptedMessage"/>"); 
             var url_string = window.location.href;
             var url = url_string.split("lista");
             url = url[0].split("#");           
@@ -33,7 +33,7 @@
         %>
         <div align="center">
 
-            <h1>Propostas</h1>            
+            <h1><fmt:message key="offer3"/></h1>            
             <br/>
         </div>
         <div align="center">

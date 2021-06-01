@@ -20,7 +20,7 @@
               e.preventDefault();
 
               if (x < max_fields) { 
-                $(wrapper).append('<div><input type="text" id="foto' + (x) + '" name="foto' + (x) + '" class="form-control" placeholder="Url" /><a href="#" class="remove_field">Remover</a></div>');
+                $(wrapper).append('<div><input type="text" id="foto' + (x) + '" name="foto' + (x) + '" class="form-control" placeholder="Url" /><a href="#" class="remove_field"><fmt:message key="remove"/></a></div>');
                 x++;
               }
 
