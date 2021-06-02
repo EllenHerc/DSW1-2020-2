@@ -16,7 +16,7 @@
         %>
         <div align="center">
 
-            <h1>Bem vindo ${sessionScope.cliente.nome}</h1>
+            <h1> <fmt:message key="welcome"/> ${sessionScope.cliente.nome}</h1>
             <h4>
                 <a href="<%=contextPath%>/cliente/redirect/imoveis">
                     <fmt:message key="searchProperty"/>

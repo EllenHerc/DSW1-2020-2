@@ -63,7 +63,8 @@ public class LoginController extends HttpServlet{
                             request.getSession().setAttribute("usuarioLogado", usuario);
                             switch (usuario.getPapel()) {
                                 case "ADMIN":
-                                    response.sendRedirect("admin/");
+                                    request.getSession().setAttribute("usuario", usuario);
+                                    response.sendRedirect("admin");
                                     break;
                                 case "CLIENTE":
                                     ClienteDao daoCliente = new ClienteDao();

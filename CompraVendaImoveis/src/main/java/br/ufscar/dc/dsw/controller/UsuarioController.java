@@ -31,7 +31,6 @@ public class UsuarioController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO : verificar se não esta logado; se já estiver logado - redirecionar pra listagem de imoveis
         String URL = "usuario/cadastro.jsp";
         RequestDispatcher rd = req.getRequestDispatcher(URL);
         rd.forward(req, resp);

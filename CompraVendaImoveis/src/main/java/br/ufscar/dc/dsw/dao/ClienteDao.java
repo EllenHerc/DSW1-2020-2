@@ -11,6 +11,8 @@ import br.ufscar.dc.dsw.conexao.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -89,6 +91,20 @@ public class ClienteDao {
              comandoSql.execute();
              Conexao.getInstance().commit();
          }
+    }
+    
+    public List<ClienteBean> getAll() throws ClassNotFoundException, SQLException {
+        List<ClienteBean> lista = new ArrayList<>();
+        String sql = "SELECT c.cpf, c.nome, c.user_email, c.sexo, c.telefone, u.id, u.senha, u.papel FROM cliente c INNER JOIN usuario u ON u.email = c.user_email";
+        try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                        ResultSet.CONCUR_UPDATABLE); ResultSet rs = comandoSql.executeQuery()) {
+            while (rs.next()) {
+                UsuarioBean usu = new UsuarioBean(rs.getLong("id"), rs.getString("user_email"), rs.getString("senha"),rs.getString("papel"));
+                ClienteBean cli = new ClienteBean(rs.getLong("cpf"), rs.getString("nome"), rs.getString("telefone"), rs.getString("sexo"), usu);
+                lista.add(cli);
+            }
+        }
+        return lista;
     }
     
     
