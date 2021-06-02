@@ -1,0 +1,48 @@
+Roteiro e tecnlogias utilizadas:
+- Banco de dados utilizado: MySql. (Certifique-se de ajustar as configurações de conexão na classe 'Conexão', por exemplo, porta e usuario e senha utilizados)
+- Rodar os scripts que estão dentro da pasta BancoDeDados; primeiro, o arquivo 'script' (para gerar o banco de dados); e depois, o arquivo 'inserts' (para popular o banco com alguns dados)
+- Compilar e fazer o deploy do projeto para uma instancia do tomcat.
+
+Roteiro:
+- Na pagina inicial, pode-se clicar na opção 'Imoveis' e visualizar a lista de imoveis, assim como, fazer uma basca por nome da cidade.
+- Na pagina inicial, pode-se clicar na opção 'Cadastro' e realizar o cadastro como usuario normal.
+- Na pagina inicial, pode-se clicar na opção 'Login', sendo necessario realizar o login com as credenciais para prosseguir.
+
+- Login como administrador (Usuario admin@email.com ; Senha 123), temos a lista de clientes cadastrados no sistema. Clicando na opção remover, podemos remover o cadastro de determinado usuario.
+- Login como cliente (apos realizar o cadastro), visualizamos nossas propostas e temos a opção de editar nossos dados cadastrais, ou ainda, remover nosso cadastro.
+- Ainda no Login como cliente, temos a opção de 'Buscar Imovel' e somo redirecionados para a pagina de listagem de imoveis; a partir da lista, podemos cadastrar uma proposta.
+- No login como imobiliaria (ver algum exemplo no script de 'inserts'), temos nossa listagem de imoveis pertencentes a imobiliaria e ainda, podemos visualizar as propostas (e aceita-las ou não) e cadastrar novos imoveis.
+
+R1: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (90%), Ellen (10%)
+
+R2: Professor disse que não é necessario implementar por estarmos em menos pessoas no grupo.
+
+R3: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
+
+R4: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
+
+R5: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (30%), Ellen (70%)
+
+R6: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (15%), Ellen (85%)
+
+R7:
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (40%), Ellen (60%)
+
+R8: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (10%), Ellen (90%)
+
+R9: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (100%), Ellen (00%)
