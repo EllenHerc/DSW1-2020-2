@@ -8,7 +8,6 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">   
-        <title>Página do Cliente</title>
     </head>
     <body>
     <fmt:bundle basename="messages">
@@ -17,7 +16,7 @@
         %>
         <div align="center">
 
-            <h1>Bem vindo ${requestScope.cliente.nome}</h1>
+            <h1>Bem vindo ${sessionScope.cliente.nome}</h1>
             <h4>
                 <a href="<%=contextPath%>/cliente/redirect/imoveis">
                     <fmt:message key="searchProperty"/>

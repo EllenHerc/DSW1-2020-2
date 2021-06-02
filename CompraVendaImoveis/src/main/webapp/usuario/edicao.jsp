@@ -21,10 +21,6 @@
                       <input type="text" class="form-control" name="nome" value="<c:out value='${usuario.nome}' />">
                     </div>
                     <div class="form-group">
-                      <label><fmt:message key="born"/></label>
-                      <input type="text" class="form-control" name="nome" value="<c:out value='${usuario.nascimento}' />">
-                    </div>
-                    <div class="form-group">
                       <label><fmt:message key="phone"/></label>
                       <input type="text" class="form-control" name="telefone" value="<c:out value='${usuario.telefone}' />">
                     </div>

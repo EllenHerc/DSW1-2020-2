@@ -19,21 +19,20 @@ import java.sql.SQLException;
 public class ClienteDao {
     
      public void CadastrarCliente(ClienteBean cli) throws ClassNotFoundException, SQLException{
-        String sql = "INSERT INTO cliente (cpf, nome, nascimento, sexo, telefone, user_email) VALUES (?, ?, ?, ?, ?)"; 
+        String sql = "INSERT INTO cliente (cpf, nome, sexo, telefone, user_email) VALUES (?, ?, ?, ?, ?)"; 
          try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
              comandoSql.setLong(1, cli.getCpf());
              comandoSql.setString(2, cli.getNome());
-             comandoSql.setDate(3, cli.getNascimento());
-             comandoSql.setString(4, cli.getSexo());
-             comandoSql.setString(5, cli.getTelefone());
-             comandoSql.setString(6, cli.getUser().getEmail());
+             comandoSql.setString(3, cli.getSexo());
+             comandoSql.setString(4, cli.getTelefone());
+             comandoSql.setString(5, cli.getUser().getEmail());
              comandoSql.execute();
              Conexao.getInstance().commit();
          }
     }
     
     public ClienteBean consultarCliente(Long cpf) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT c.cpf, c.nome, c.nascimento, c.sexo, c.telefone, c.user_email, u.id FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.cpf = ?";
+        String sql = "SELECT c.cpf, c.nome, c.sexo, c.telefone, c.user_email, u.id FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.cpf = ?";
         ClienteBean cli;
          try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
              comandoSql.setLong(1, cpf);
@@ -44,7 +43,6 @@ public class ClienteDao {
                 cli.setNome(rs.getString("nome"));
                 cli.setSexo(rs.getString("sexo"));
                 cli.setTelefone(rs.getString("telefone"));
-                cli.setNascimento(rs.getDate("nascimento"));
                 UsuarioBean usu = new UsuarioBean();
                 usu.setId(rs.getLong("id"));
                 usu.setEmail(rs.getString("user_email"));
@@ -55,16 +53,16 @@ public class ClienteDao {
     }
     
     public ClienteBean consultarClienteEmail(String email) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT c.cpf, c.nome, c.nascimento, c.sexo, c.telefone, u.id, u.senha, u.papel FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.user_email = ?";
+        String sql = "SELECT c.cpf, c.nome, c.sexo, c.telefone, u.id, u.senha, u.papel FROM cliente c INNER JOIN usuario u ON u.email = c.user_email  WHERE c.user_email = ?";
         ClienteBean cli;
-         try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, 
-                        ResultSet.CONCUR_UPDATABLE)) {
+         try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql/*, ResultSet.TYPE_SCROLL_SENSITIVE, 
+                        ResultSet.CONCUR_UPDATABLE*/)) {
              comandoSql.setString(1, email);
             try (ResultSet rs = comandoSql.executeQuery()) {
                 rs.first();
 
                 UsuarioBean usu = new UsuarioBean(rs.getLong("id"), email, rs.getString("senha"),rs.getString("papel"));
-                cli = new ClienteBean(rs.getLong("cpf"), rs.getString("nome"), rs.getString("telefone"), rs.getString("sexo"), rs.getDate("nascimento"), usu);
+                cli = new ClienteBean(rs.getLong("cpf"), rs.getString("nome"), rs.getString("telefone"), rs.getString("sexo"), usu);
             }
          }
         return cli;
@@ -72,14 +70,13 @@ public class ClienteDao {
     
       
     public void alterarCliente(ClienteBean cli) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE cliente SET nome = ?, nascimento = ?, telefone = ?, sexo = ?, user_email = ? WHERE cpf = ?";
+        String sql = "UPDATE cliente SET nome = ?, telefone = ?, sexo = ?, user_email = ? WHERE cpf = ?";
          try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
              comandoSql.setString(1, cli.getNome());
-             comandoSql.setDate(2, cli.getNascimento());
-             comandoSql.setString(3, cli.getTelefone());
-             comandoSql.setString(4, cli.getSexo());
-             comandoSql.setString(5, cli.getUser().getEmail());
-             comandoSql.setLong(6, cli.getCpf());
+             comandoSql.setString(2, cli.getTelefone());
+             comandoSql.setString(3, cli.getSexo());
+             comandoSql.setString(4, cli.getUser().getEmail());
+             comandoSql.setLong(5, cli.getCpf());
              comandoSql.execute();
              Conexao.getInstance().commit();
          }

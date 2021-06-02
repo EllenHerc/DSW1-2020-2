@@ -25,10 +25,6 @@
                       <input type="text" class="form-control" name="cpf">
                     </div>
                     <div class="form-group">
-                      <label><fmt:message key="born"/> dd/mm/aaaa</label>
-                      <input type="text" class="form-control" name="nascimento">
-                    </div>
-                    <div class="form-group">
                       <label><fmt:message key="phone"/></label>
                       <input type="text" class="form-control" name="telefone">
                     </div>

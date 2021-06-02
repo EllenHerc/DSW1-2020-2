@@ -15,15 +15,13 @@ public class ClienteBean {
     private String nome;
     private String telefone;
     private String sexo;
-    private Date nascimento;
     private UsuarioBean user;
 
-    public ClienteBean(Long cpf, String nome, String telefone, String sexo, Date nascimento, UsuarioBean user) {
+    public ClienteBean(Long cpf, String nome, String telefone, String sexo, UsuarioBean user) {
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.sexo = sexo;
-        this.nascimento = nascimento;
         this.user = user;
     }
 
@@ -46,16 +44,10 @@ public class ClienteBean {
         this.sexo = sexo;
     }
 
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
-    }
-
     public void setUser(UsuarioBean user) {
         this.user = user;
     }
 
-    
-    
     public Long getCpf() {
         return cpf;
     }
@@ -70,10 +62,6 @@ public class ClienteBean {
 
     public String getSexo() {
         return sexo;
-    }
-
-    public Date getNascimento() {
-        return nascimento;
     }
 
     public UsuarioBean getUser() {

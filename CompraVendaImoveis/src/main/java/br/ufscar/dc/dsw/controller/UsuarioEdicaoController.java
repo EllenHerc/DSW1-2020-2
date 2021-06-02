@@ -6,9 +6,6 @@ import br.ufscar.dc.dsw.dao.ClienteDao;
 import br.ufscar.dc.dsw.dao.UsuarioDao;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -47,24 +44,14 @@ public class UsuarioEdicaoController extends HttpServlet{
             req.setCharacterEncoding("UTF-8");
 
             String nome = req.getParameter("nome");
-            String nascimento = req.getParameter("nascimento");
             String telefone = req.getParameter("telefone");
             String sexo = req.getParameter("sexo");
-            
-            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
-            java.sql.Date data = null;
-            try {
-                data = new java.sql.Date(fmt.parse(nascimento).getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
             
             ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
             
             cliente.setNome(nome);
             cliente.setTelefone(telefone);
             cliente.setSexo(sexo);
-            cliente.setNascimento(data);
             
             ClienteDao clienteDao = new ClienteDao();
             clienteDao.alterarCliente(cliente);

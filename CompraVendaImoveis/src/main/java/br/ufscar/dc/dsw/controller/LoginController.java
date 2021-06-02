@@ -70,11 +70,13 @@ public class LoginController extends HttpServlet{
                                     ClienteBean cliente = null;
                                     try {
                                         cliente = daoCliente.consultarClienteEmail(usuario.getEmail());
+                                        request.getSession().setAttribute("cliente", cliente);
+                                        response.sendRedirect("cliente/clienteHome.jsp");
                                     } catch (SQLException | ClassNotFoundException ex) {
                                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                                        response.sendRedirect("login.jsp");
                                     }
-                                    request.getSession().setAttribute("clienteLogado", cliente);
-                                    response.sendRedirect("cliente/clienteHome.jsp");
+                                    
                                     break;
                                 case "IMOBILIARIA":
                                     ImobiliariaDao daoImobiliaria = new ImobiliariaDao();
