@@ -6,4 +6,3 @@ Prof. Delano Medeiros Beder<br>
 ### Equipe
 760722 Caio Cesar de Morais Sales<br>
 743528 Ellen Cristina Silva do Rosario Herculano<br>
-592790 Samara Morgana Marcelino da Silva Almeida<br>
