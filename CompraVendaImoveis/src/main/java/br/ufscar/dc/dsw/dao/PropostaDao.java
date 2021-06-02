@@ -44,7 +44,7 @@ public class PropostaDao {
                 + " FROM proposta p INNER JOIN imovel i ON p.imovel_id = i.id INNER JOIN cidade c ON c.id = i.cidade_id INNER JOIN imobiliaria im ON im.cnpj = i.imobiliaria_cnpj WHERE p.cliente_cpf = ?";
             List<PropostaBean> listaPropostas;
         try (PreparedStatement comandoSql = Conexao.getInstance().prepareStatement(sql)) {
-            comandoSql.setLong(1, cliente.getCpf());
+            comandoSql.setString(1, cliente.getCpf().toString());
                 try (ResultSet rs = comandoSql.executeQuery()) {
                     PropostaBean prop;
                     listaPropostas = new ArrayList<>();

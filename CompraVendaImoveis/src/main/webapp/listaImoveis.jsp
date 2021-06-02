@@ -57,12 +57,10 @@
                                 <td></td><td>${imovel.cidade.nome} - ${imovel.cidade.uf}, ${imovel.cep}</td>
                             </tr>
                         </table>
-                        <a href="<%=contextPath%>/listaImoveis?id=${imovel.id}" class="btn btn-secondary">Visualizar Fotos</a>
-                        <c:choose>
-                            <c:when test="${requestScope.cliente != null}">
-                                <a href="<%=contextPath%>/cliente/proposta/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary"><fmt:message key="offer"/></a>
-                            </c:when>                                
-                        </c:choose>   
+                        <!--<a href="<%=contextPath%>/listaImoveis?id=${imovel.id}" class="btn btn-secondary">Visualizar Fotos</a>-->
+                        
+                        <a href="<%=contextPath%>/cliente/proposta/cadastroProposta?idimovel=${imovel.id}" class="btn btn-primary"><fmt:message key="offer"/></a>
+                        
                   </div>
                   <div class="card-footer">
                     <small class="text-muted">${imovel.imobiliaria.nome}</small>
@@ -73,14 +71,7 @@
 		
 	</div>
         <br/>
-        <c:choose>
-            <c:when test="${requestScope.cliente != null}">
-		<a href="voltar">Voltar</a><br/>
-            </c:when>
-	    <c:otherwise>
-		<a href="<%=contextPath%>/index.jsp"><fmt:message key="back"/></a>
-            </c:otherwise>
-	</c:choose>
+        <a href="<%=contextPath%>/index.jsp"><fmt:message key="back"/></a>
 </fmt:bundle>        
 </body>
 </html>

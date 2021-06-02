@@ -7,13 +7,16 @@ package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.bean.ClienteBean;
 import br.ufscar.dc.dsw.bean.ImobiliariaBean;
+import br.ufscar.dc.dsw.bean.PropostaBean;
 import br.ufscar.dc.dsw.bean.UsuarioBean;
 import br.ufscar.dc.dsw.dao.ClienteDao;
 import br.ufscar.dc.dsw.dao.ImobiliariaDao;
+import br.ufscar.dc.dsw.dao.PropostaDao;
 import br.ufscar.dc.dsw.dao.UsuarioDao;
 import br.ufscar.dc.dsw.util.Erro;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -67,12 +70,18 @@ public class LoginController extends HttpServlet{
                                     response.sendRedirect("admin");
                                     break;
                                 case "CLIENTE":
+                                    PropostaDao propostaDao = new PropostaDao();
                                     ClienteDao daoCliente = new ClienteDao();
                                     ClienteBean cliente = null;
+                                    List<PropostaBean> propostas = null;
                                     try {
                                         cliente = daoCliente.consultarClienteEmail(usuario.getEmail());
+                                        propostas = propostaDao.getByClient(cliente);
                                         request.getSession().setAttribute("cliente", cliente);
-                                        response.sendRedirect("cliente/clienteHome.jsp");
+                                        request.setAttribute("listaPropostas", propostas);
+                                        //response.sendRedirect("cliente/clienteHome.jsp");
+                                        RequestDispatcher dispatcher = request.getRequestDispatcher("cliente/clienteHome.jsp");
+                                        dispatcher.forward(request, response);
                                     } catch (SQLException | ClassNotFoundException ex) {
                                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                                         response.sendRedirect("login.jsp");

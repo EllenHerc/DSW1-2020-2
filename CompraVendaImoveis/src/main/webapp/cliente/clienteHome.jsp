@@ -46,7 +46,7 @@
                 </table>
             </div>
             <br/>
-            <a href="<%=contextPath%>/index.jsp"><fmt:message key="logout"/></a>
+            <a href="<%=contextPath%>/login.jsp"><fmt:message key="logout"/></a>
             <a href="<%=contextPath%>/edicao"><fmt:message key="changeMe"/></a>
             <a href="<%=contextPath%>/remocao"><fmt:message key="removeMe"/></a>
     </fmt:bundle>

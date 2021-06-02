@@ -60,7 +60,7 @@ public class PropostaController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        ClienteBean cliente = (ClienteBean) request.getSession().getAttribute("clienteLogado");
+        ClienteBean cliente = (ClienteBean) request.getSession().getAttribute("cliente");
         ImobiliariaBean imobiliaria = (ImobiliariaBean) request.getSession().getAttribute("imobiliariaLogado");
         Erro erros = new Erro();
 
