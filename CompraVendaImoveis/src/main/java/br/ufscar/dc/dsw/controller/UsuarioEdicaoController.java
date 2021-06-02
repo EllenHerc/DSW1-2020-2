@@ -32,7 +32,7 @@ public class UsuarioEdicaoController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String URL = "usuario/edicao.jsp";
-        ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
+        ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("cliente");
         req.setAttribute("usuario", cliente);
         RequestDispatcher dispatcher = req.getRequestDispatcher(URL);
         dispatcher.forward(req, resp);
@@ -47,7 +47,7 @@ public class UsuarioEdicaoController extends HttpServlet{
             String telefone = req.getParameter("telefone");
             String sexo = req.getParameter("sexo");
             
-            ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
+            ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("cliente");
             
             cliente.setNome(nome);
             cliente.setTelefone(telefone);

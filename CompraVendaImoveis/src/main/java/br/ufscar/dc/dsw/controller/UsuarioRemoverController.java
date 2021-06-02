@@ -32,13 +32,13 @@ public class UsuarioRemoverController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-             ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("clienteLogado");
-            
-            UsuarioDao usuarioDao = new UsuarioDao();
-            usuarioDao.excluirUsuario(cliente.getUser().getId());
+            ClienteBean cliente = (ClienteBean) req.getSession().getAttribute("cliente");
             
             ClienteDao clienteDao = new ClienteDao();
             clienteDao.excluirCliente(cliente.getCpf());
+             
+            UsuarioDao usuarioDao = new UsuarioDao();
+            usuarioDao.excluirUsuario(cliente.getUser().getId());
             
             resp.sendRedirect("index.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
