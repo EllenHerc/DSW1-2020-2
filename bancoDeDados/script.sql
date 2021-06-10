@@ -59,7 +59,6 @@ CREATE TABLE cliente (
 	user_email VARCHAR(35) NOT NULL,
 	nome VARCHAR(256) NOT NULL,
 	sexo VARCHAR(10) NOT NULL,
-    nascimento DATE NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     FOREIGN KEY (user_email)
         REFERENCES usuario (email),
