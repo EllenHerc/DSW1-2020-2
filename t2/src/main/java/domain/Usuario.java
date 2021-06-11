@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,13 +26,19 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
+    @Size(min = 5, max = 45)
     @Column(unique = true, nullable = false, length = 45)
     private String email;
 
-    @Column(nullable = false, length = 64)
+    @NotBlank
+    @Size(min = 6, max = 16)
+    @Column(nullable = false, length = 16)
     private String senha;
 
-    @Column(nullable = false, length = 45)
+    @NotBlank
+    @Size(min = 3, max = 14)
+    @Column(nullable = false, length = 14)
     private String papel;
 
     public Usuario() {
