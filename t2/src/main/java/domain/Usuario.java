@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable{
  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

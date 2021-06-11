@@ -7,15 +7,26 @@ package dao;
  */
 
 import domain.Usuario;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author caiocesardemorais
  */
+@SuppressWarnings("unchecked")
 public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
 
     Usuario findByEmail(String email);
+    
+    @Override
+    List<Usuario> findAll();
 
     Usuario findById(long id);
+    
+    @Override
+    Usuario save(Usuario usu);
+
+    @Override
+    void deleteById(Long id);
 }
