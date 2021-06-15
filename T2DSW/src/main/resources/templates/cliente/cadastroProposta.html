@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{proposta.cadastrar.label}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/cliente/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{proposta.listar.label}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="@{/cliente/salvarProposta/{id} (id=${idimovel})}"
+				th:object="${proposta}" method="POST">
+
+				<div class="form-row">                                       
+					<div class="form-group col-md-6">
+						<label th:text="#{proposta.valor.label}" for="valor"></label> 
+						<input type="number" class="form-control" id="valor"
+							th:field="*{valor}" th:placeholder="#{proposta.valor.label}"
+							th:classappend="${#fields.hasErrors('valor')} ? is-invalid" min=0 required/>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{valor}"></span>
+						</div>
+					</div>
+                                        <div class="form-group col-md-6">
+						<label th:text="#{proposta.pagamento.label}" for="pagamento"></label> 
+						<textarea rows="4" class="form-control" id="pagamento"
+							th:field="*{pagamento}" th:placeholder="#{proposta.pagamento.label}"
+							th:classappend="${#fields.hasErrors('pagamento')} ? is-invalid" required></textarea>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{pagamento}"></span>
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" th:text="#{button.salvar.label}"
+					class="btn btn-primary btn-sm"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
