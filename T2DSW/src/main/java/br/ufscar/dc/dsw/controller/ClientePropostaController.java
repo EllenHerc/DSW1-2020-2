@@ -46,10 +46,15 @@ public class ClientePropostaController {
 	}
 	
 	@GetMapping("/cadastrar/{id}")
-	public String cadastrar(@PathVariable("id") Long id, ModelMap model, Proposta proposta) {
+	public String cadastrar(@PathVariable("id") Long id, ModelMap model, Proposta proposta, RedirectAttributes attr) {
+            
+            if(service.contarPorClienteImovel(serviceCliente.buscarPorUsuario(this.getUsuario()).getId(), id) > 0){
+                attr.addFlashAttribute("fail", "Você já possui uma proposta ABERTA para esse imovel");
+		return "listaImoveis";
+            }
 
-                model.addAttribute("idimovel",id);
-		return "cliente/cadastroProposta";
+            model.addAttribute("idimovel",id);
+            return "cliente/cadastroProposta";
 	}
 	
 	@GetMapping("/listar")
@@ -68,7 +73,7 @@ public class ClientePropostaController {
                 Date date = new Date();
                 java.sql.Date dataSql = new java.sql.Date(date.getTime());
                 proposta.setDataemissao(dataSql);		
-                proposta.setStatus("ABERTO");
+                proposta.setStatus("ABERTA");
 		service.salvar(proposta);
 		attr.addFlashAttribute("sucess", "Proposta inserida com sucesso.");
 		return "redirect:/cliente/listar";

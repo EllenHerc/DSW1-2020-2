@@ -51,6 +51,34 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script type="text/javascript">
+             $(document).ready(function() {
+                    var max_fields = 10;
+                    var wrapper = $(".inputs");
+                    var add_button = $("#adicionarcampo");
+
+                    var x = 1;
+                    $(add_button).click(function(e) {
+                      e.preventDefault();
+
+                      if (x < max_fields) { 
+                        if(document.getElementById("fotos["+(x-1).toString()+"].url").value.length <=0){
+                          document.getElementById("fotos["+(x-1).toString()+"].url").focus(); 
+                        }else{
+                        $(wrapper).append('<div><tr><td><input type="text" class="form-control" id="fotos['+(x)+'].url"  th:field="*{fotos['+(x)+'].url}" placeholder="Url"/></td><td> <a href="#" class="btn btn-danger" id="remove_field"><span class="oi oi-circle-x" th:title="#{link.excluir.label}" aria-hidden="true"> </span></a></td></tr></div>');
+                        x++;
+                    }
+                      }
+
+                    });
+
+
+                    $(wrapper).on("click", "#remove_field", function(e) {
+                      e.preventDefault();
+                      $(this).parent('div').remove();
+                      x--;
+                    });
+                });
+                
 		var url = '';
 		
 		$('button[id*="btn_"]').click(function() {

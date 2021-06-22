@@ -19,7 +19,7 @@ public interface IUsuarioService {
 
     List<Usuario> buscarTodos();
 
-    void salvar(Usuario usuario);
+    Usuario salvar(Usuario usuario);
 
     void excluir(Long id);	
     

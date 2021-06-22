@@ -28,6 +28,9 @@ public interface IPropostaDAO extends CrudRepository<Proposta, Long>{
     List<Proposta> findAllByImovel(Imovel i);
 
     List<Proposta> findAllByCliente(Cliente c);
+    
+    @Query("SELECT count(p) FROM Proposta p INNER JOIN Cliente cli ON p.cliente = cli.id INNER JOIN Imovel i ON p.imovel = i.id WHERE i.id = :idimovel AND cli.id = :idcliente AND p.status LIKE 'ABERTA'")
+    int countByClienteAndImovel(@Param("idcliente") long idcliente, @Param("idimovel") long idimovel);
 
     @Query("SELECT p FROM Proposta p INNER JOIN Cliente cli ON p.cliente = cli.id INNER JOIN Imovel i ON p.imovel = i.id INNER JOIN Cidade c ON c.id = i.cidade INNER JOIN Imobiliaria im ON im.id = i.imobiliaria WHERE i.imobiliaria = :imobiliaria ORDER BY p.status")
     public List<Proposta> findAllByImobiliaria(@Param("imobiliaria") Imobiliaria imobiliaria);

@@ -17,10 +17,8 @@ public interface IFotoService {
     Foto buscarPorId(Long id);
 
     List<Foto> buscarTodos();
-    
-    List<Foto> buscarTodos(Imovel i);
-    
-    void salvar(Foto f);
+
+    Foto salvar(Foto f);
 
     void excluir(Long id);
     

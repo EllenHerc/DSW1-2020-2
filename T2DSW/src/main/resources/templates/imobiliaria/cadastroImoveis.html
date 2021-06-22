@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+    <body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{imovel.cadastrar.label}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/imobiliaria/listarImoveis}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{imovel.listar.label}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+                <div th:replace="fragments/alert"></div>
+
+                <form
+                    th:action="@{/imobiliaria/salvarImovel}"
+                    th:object="${imovel}" method="POST">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label th:text="#{imovel.descricao.label}" for="descricao"></label> 
+                            <input type="text" class="form-control" id="nome" autofocus="autofocus"
+                                    th:field="*{descricao}" th:placeholder="#{imovel.descricao.label}"
+                                    th:classappend="${#fields.hasErrors('descricao')} ? is-invalid" required />
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{descricao}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label th:text="#{imovel.valor.label}" for="valor"></label> 
+                            <input type="number" class="form-control" id="valor"
+                                    th:field="*{valor}" th:placeholder="#{imovel.valor.label}"
+                                    th:classappend="${#fields.hasErrors('valor')} ? is-invalid" min=1 required/>
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{valor}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label th:text="#{imovel.cep.label}" for="cep"></label> 
+                                <input type="text" pattern="[0-9]{5}-[0-9]{3}$" class="form-control" id="cep" autofocus="autofocus"
+                                        th:field="*{cep}" placeholder="_____-___"
+                                        data-mask="00000-000" data-mask-reverse="true"
+                                        th:classappend="${#fields.hasErrors('cep')} ? is-invalid" required />
+
+                                <div class="invalid-feedback">
+                                        <span th:errors="*{cep}"></span>
+                                </div>
+                        </div>	
+                        <div class="form-group col-md-6">
+                                <label th:text="#{imovel.cidade.label}" for="cidade" required ></label> 
+                                <select class="form-control" name="cidade" id="cidade">
+                                                <option th:each="cidade : ${cidades}" th:value="${cidade.id}" th:text="${cidade.nome}" ></option>
+                                </select>
+                        </div>				
+                        <div class="form-group col-md-6">
+                            <label th:text="#{imovel.logradouro.label}" for="logradouro"></label> 
+                            <input type="text" class="form-control" id="logradouro" autofocus="autofocus"
+                                    th:field="*{logradouro}" th:placeholder="#{imovel.logradouro.label}"
+                                    th:classappend="${#fields.hasErrors('logradouro')} ? is-invalid" required/>
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{logradouro}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label th:text="#{imovel.numero.label}" for="numero"></label> 
+                            <input type="number" class="form-control" id="numero"
+                                    th:field="*{numero}" th:placeholder="#{imovel.numero.label}"
+                                    th:classappend="${#fields.hasErrors('numero')} ? is-invalid" min=0 required/>
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{numero}"></span>
+                            </div>
+                        </div>				
+                        <div class="form-group col-md-6">
+                            <label th:text="#{imovel.bairro.label}" for="bairro"></label> 
+                            <input type="text" class="form-control" id="bairro" autofocus="autofocus"
+                                    th:field="*{bairro}" th:placeholder="#{imovel.bairro.label}"
+                                    th:classappend="${#fields.hasErrors('bairro')} ? is-invalid" required />
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{bairro}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">                            
+                            <label th:text="#{imovel.foto.label}" for="fotos"></label>
+                            <table class="inputs">
+                                <tr><td><input type="text" class="form-control" id="fotos[0].url"  th:field="*{fotos[0].url}" placeholder="Url" th:classappend="${#fields.hasErrors('fotos[0].url')} ? is-invalid"></td></tr>
+                            </table>
+                            <a href="javascript:void(0)" id="adicionarcampo" class="btn btn-sm btn-info" th:text="#{imovel.btn.foto.label}"></a>
+                            <div class="invalid-feedback">
+                                            <span th:errors="*{fotos[0].url}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <input type="hidden" id="id" th:field="*{id}" />
+                    <button type="submit" th:text="#{button.salvar.label}"
+                            class="btn btn-primary btn-sm"></button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

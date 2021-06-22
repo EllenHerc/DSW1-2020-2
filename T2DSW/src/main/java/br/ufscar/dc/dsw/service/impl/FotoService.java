@@ -7,7 +7,6 @@ package br.ufscar.dc.dsw.service.impl;
 
 import br.ufscar.dc.dsw.dao.IFotoDAO;
 import br.ufscar.dc.dsw.domain.Foto;
-import br.ufscar.dc.dsw.domain.Imovel;
 import br.ufscar.dc.dsw.service.spec.IFotoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +36,9 @@ public class FotoService implements IFotoService{
         return dao.findAll();
     }
 
-    @Transactional(readOnly = true)
     @Override
-    public List<Foto> buscarTodos(Imovel i) {
-        return dao.findAllByImovel(i);
-    }
-    
-    @Override
-    public void salvar(Foto f) {
-        dao.save(f);
+    public Foto salvar(Foto f) {
+        return dao.save(f);
     }
     
     @Override

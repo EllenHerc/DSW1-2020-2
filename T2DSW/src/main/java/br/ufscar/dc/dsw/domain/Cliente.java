@@ -5,6 +5,7 @@
  */
 package br.ufscar.dc.dsw.domain;
 
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,6 +29,10 @@ public class Cliente extends AbstractEntity<Long>{
     @Column(nullable = false, length = 256)
     private String nome;   
     
+    @NotNull(message = "DATA DE NASCIMENTO Não pode ficar vazio")
+    @Column(nullable = false)
+    private Date nascimento;  
+    
     @NotBlank(message = "CPF Não pode ficar vazio")
     @Size(max = 14)
     @Column(nullable = false, length = 14)
@@ -39,14 +44,22 @@ public class Cliente extends AbstractEntity<Long>{
     private String sexo;
     
     @NotBlank(message = "TELEFONE Não pode ficar vazio")
-    @Size(max = 12)
-    @Column(nullable = false, length = 12)
+    @Size(max = 17)
+    @Column(nullable = false, length = 17)
     private String telefone;
     
     @NotNull(message = "USUARIO_ID Não pode ficar vazio")
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    public Date getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(Date nascimento) {
+        this.nascimento = nascimento;
+    }
 
     public String getNome() {
         return nome;

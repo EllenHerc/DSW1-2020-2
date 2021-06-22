@@ -39,7 +39,7 @@ public class ClienteService implements IClienteService{
 
     @Override
     public void salvar(Cliente c) {
-        dao.save(c);
+       dao.save(c);
     }
 
     @Transactional(readOnly = true)

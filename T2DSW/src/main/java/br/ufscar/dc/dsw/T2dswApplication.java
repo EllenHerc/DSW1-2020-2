@@ -13,6 +13,7 @@ import br.ufscar.dc.dsw.domain.Cidade;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Imobiliaria;
 import br.ufscar.dc.dsw.domain.Usuario;
+import java.sql.Date;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -71,10 +72,11 @@ public class T2dswApplication {
 			u1.setPapel("ROLE_CLIENTE");
 			u1.setEnabled(true);
 			usuarioDAO.save(u1);
-                        
+                                                
                         Cliente cl1 = new Cliente();
                         cl1.setCpf("475.822.877-95");
                         cl1.setNome("Maria Helena");
+                        cl1.setNascimento(Date.valueOf("2000-01-12"));
                         cl1.setSexo("FEMININO");
                         cl1.setTelefone("16988721547");
                         cl1.setUsuario(u1);
@@ -99,7 +101,8 @@ public class T2dswApplication {
 			u3.setSenha(encoder.encode("123"));
 			u3.setPapel("ROLE_IMOBILIARIA");
 			u3.setEnabled(true);
-			usuarioDAO.save(u3);
+			Usuario u4 = usuarioDAO.save(u3);
+                        System.out.println(u4.getId());
                         
                         Imobiliaria i2 = new Imobiliaria();
                         i2.setCnpj("05.887.451/0001-78");

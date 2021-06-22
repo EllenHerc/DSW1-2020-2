@@ -66,5 +66,11 @@ public class PropostaService implements IPropostaService{
     public void excluir(Long id) {
         dao.deleteById(id);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public int contarPorClienteImovel(Long idcliente, Long idimovel) {
+        return dao.countByClienteAndImovel(idcliente, idimovel);
+    }
     
 }

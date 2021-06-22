@@ -18,6 +18,8 @@ import java.util.List;
 public interface IPropostaService {
     
     Proposta buscarPorId(Long id);
+    
+    int contarPorClienteImovel(Long idcliente, Long idimovel);
 	
     List<Proposta> buscarTodos();
     

@@ -25,8 +25,8 @@ public class UsuarioService implements IUsuarioService{
     IUsuarioDAO dao;
 
     @Override
-    public void salvar(Usuario usuario) {
-            dao.save(usuario);
+    public Usuario salvar(Usuario usuario) {
+            return dao.save(usuario);
     }
 
     @Override
