@@ -48,7 +48,7 @@
                                         </tr>
                                     </table>
                                 <div sec:authorize="hasRole('ROLE_CLIENTE')">
-                                    <a class="btn btn-primary" th:href="@{/cliente/cadastrar/{id} (id=${imovel.id}) }"><span th:text="#{imovel.proposta.label}"></span></a>
+                                    <a class="btn btn-primary" th:href="@{/cliente/cadastrar/{id} (id=${imovel.id}) }"><span th:text="#{imovel.btn_proposta.label}"></span></a>
                                 </div>
                               </div>
                               <div class="card-footer">

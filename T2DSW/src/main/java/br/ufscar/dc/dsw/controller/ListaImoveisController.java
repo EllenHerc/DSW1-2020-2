@@ -28,6 +28,7 @@ public class ListaImoveisController {
     
     @Autowired
 	private IImovelService service;
+    @Autowired
         private IFotoService serviceFoto;
 	
 	@Autowired

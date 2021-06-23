@@ -24,9 +24,8 @@
             <div th:replace="fragments/alert"></div>
 
             <form
-                th:action="${cliente.id == null} ? @{/admin/salvarCliente} : @{/admin/editarCliente}"
+                th:action="${cliente.id == null} ? @{/admin/salvarCliente} : @{/admin/editaCliente/{id} (id=${cliente.id})}"
                 th:object="${cliente}" method="POST">
-
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label th:text="#{cliente.nome.label}" for="nome"></label> 
@@ -41,7 +40,8 @@
                         <div class="form-group col-md-6">
                             <label th:text="#{cliente.cpf.label}" for="cpf"></label> 
                             <input type="text" class="form-control" id="cpf" autofocus="autofocus"
-                                    th:field="*{cpf}" placeholder="_____-___"
+                                   pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$"
+                                    th:field="*{cpf}" placeholder="___.___.___-__"
                                     data-mask="000.000.000-00" data-mask-reverse="true"
                                     th:classappend="${#fields.hasErrors('cpf')} ? is-invalid" required />
 
@@ -69,6 +69,7 @@
                         <div class="form-group col-md-6">
                             <label th:text="#{cliente.telefone.label}" for="telefone"></label> 
                             <input type="text" class="form-control" id="cpf" autofocus="autofocus"
+                                   pattern="{1}[0-9]{2}([0-9]{2})[0-9]{5}-[0-9]{4}$"
                                     th:field="*{telefone}" placeholder="+55(__)_____-____"
                                     data-mask="+00(00)00000-0000" data-mask-reverse="true"
                                     th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" required/>
@@ -78,7 +79,6 @@
                             </div>
                         </div>
 
-                        <div th:if="${cliente.id == null}">
                             <div id="usuario" th:object="${usuario}">
                                 <div class="form-group col-md-6">
                                     <label th:text="#{login.username}" for="email"></label> 
@@ -90,9 +90,6 @@
                                             <span th:errors="*{email}"></span>
                                     </div>
                                 </div>
-                            
-                            
-                                <input type="hidden" id="email" th:field="*{email}" />
                                 <div class="form-group col-md-6">
                                     <label th:text="#{login.password}" for="senha"></label> 
                                     <input type="password" class="form-control" id="senha" autofocus="autofocus"
@@ -103,8 +100,8 @@
                                             <span th:errors="*{senha}"></span>
                                     </div>
                                 </div>
+                                <input type="hidden" id="id2" th:field="*{id}" />
                             </div>
-                        </div>
                 </div>
 
                 <input type="hidden" id="id" th:field="*{id}" />

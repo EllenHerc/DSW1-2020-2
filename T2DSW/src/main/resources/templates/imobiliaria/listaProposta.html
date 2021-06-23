@@ -31,6 +31,7 @@
 							<th th:text="#{proposta.pagamento.label}"></th>
 							<th th:text="#{proposta.imovel.label}"></th>
 							<th th:text="#{proposta.status.label}"></th>
+                                                        <th th:text="#{acao.label}"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,6 +41,19 @@
                                                         <td th:text="${proposta.pagamento}"></td>
                                                         <td th:text="${proposta.imovel.descricao}"></td>
                                                         <td th:text="${proposta.status}"></td>
+                                                        
+                                                        <td colspan="2">
+                                                            <div th:if="${proposta.status == 'ABERTA'}">
+                                                                <a class="btn btn-success btn-sm" th:href="@{/imobiliaria/aceitarProposta/{id} (id=${proposta.id}) }"
+                                                                            role="button"> 
+                                                                            <span class="oi oi-check" th:title="#{link.aceita.label}" aria-hidden="true"> </span>
+                                                                </a>
+                                                               <a class="btn btn-danger btn-sm" href="#"
+                                                                            role="button"> 
+                                                                            <span class="oi oi-circle-x" th:attr="onclick=|mensagem('${proposta.id}')|" th:title="#{link.recusa.label}" aria-hidden="true"> </span>
+                                                                </a>
+                                                           </div>
+                                                        </td>
 						</tr>
 					</tbody>
 				</table>

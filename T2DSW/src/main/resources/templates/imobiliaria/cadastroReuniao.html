@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+    <body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{reuniao.agendar.label}"></span></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+                <div th:replace="fragments/alert"></div>
+
+                <form
+                    th:action="@{/imobiliaria/salvarReuniao/{id} (id=${idproposta})}"
+                    th:object="${reuniao}" method="POST">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label th:text="#{reuniao.data.label}" for="data"></label> 
+                            <input type="date" class="form-control" id="nome" autofocus="autofocus"
+                                    th:field="*{data}" th:placeholder="#{reuniao.data.label}"
+                                    th:classappend="${#fields.hasErrors('data')} ? is-invalid" required />
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{data}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label th:text="#{reuniao.hora.label}" for="hora"></label> 
+                            <input type="time" class="form-control" id="hora"
+                                    th:field="*{hora}" th:placeholder="#{reuniao.hora.label}"
+                                    th:classappend="${#fields.hasErrors('hora')} ? is-invalid" required/>
+
+                            <div class="invalid-feedback">
+                                    <span th:errors="*{hora}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label th:text="#{reuniao.link.label}" for="cep"></label> 
+                                <input type="text" class="form-control" id="link" autofocus="autofocus"
+                                        th:field="*{link}" placeholder="link"
+                                        th:classappend="${#fields.hasErrors('link')} ? is-invalid" required />
+
+                                <div class="invalid-feedback">
+                                        <span th:errors="*{link}"></span>
+                                </div>
+                        </div>	
+                    </div>
+                    <button type="submit" th:text="#{button.salvar.label}"
+                            class="btn btn-primary btn-sm"></button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

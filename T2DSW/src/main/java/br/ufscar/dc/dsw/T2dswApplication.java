@@ -7,13 +7,18 @@ package br.ufscar.dc.dsw;
 
 import br.ufscar.dc.dsw.dao.ICidadeDAO;
 import br.ufscar.dc.dsw.dao.IClienteDAO;
+import br.ufscar.dc.dsw.dao.IFotoDAO;
 import br.ufscar.dc.dsw.dao.IImobiliariaDAO;
+import br.ufscar.dc.dsw.dao.IImovelDAO;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.domain.Cidade;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Foto;
 import br.ufscar.dc.dsw.domain.Imobiliaria;
+import br.ufscar.dc.dsw.domain.Imovel;
 import br.ufscar.dc.dsw.domain.Usuario;
 import java.sql.Date;
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,8 +36,8 @@ public class T2dswApplication {
 		SpringApplication.run(T2dswApplication.class, args);
 	}
     @Bean
-	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IClienteDAO clienteDAO, IImobiliariaDAO imobiliariaDAO, ICidadeDAO cidadeDAO) {
-		return (args) -> {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IClienteDAO clienteDAO, IImobiliariaDAO imobiliariaDAO, ICidadeDAO cidadeDAO, IFotoDAO fotoDAO, IImovelDAO imovelDAO) {
+		return (String[] args) -> {
 			
 			Usuario adm = new Usuario();
 			adm.setEmail("admin@admin");
@@ -78,7 +83,7 @@ public class T2dswApplication {
                         cl1.setNome("Maria Helena");
                         cl1.setNascimento(Date.valueOf("2000-01-12"));
                         cl1.setSexo("FEMININO");
-                        cl1.setTelefone("16988721547");
+                        cl1.setTelefone("+55(16)98872-1547");
                         cl1.setUsuario(u1);
                         clienteDAO.save(cl1);
                         
@@ -101,8 +106,7 @@ public class T2dswApplication {
 			u3.setSenha(encoder.encode("123"));
 			u3.setPapel("ROLE_IMOBILIARIA");
 			u3.setEnabled(true);
-			Usuario u4 = usuarioDAO.save(u3);
-                        System.out.println(u4.getId());
+			usuarioDAO.save(u3);
                         
                         Imobiliaria i2 = new Imobiliaria();
                         i2.setCnpj("05.887.451/0001-78");
@@ -110,6 +114,26 @@ public class T2dswApplication {
                         i2.setDescricao("Tradição e confiança na venda, locação e administração de imóveis em São Carlos");
 			i2.setUsuario(u3);
                         imobiliariaDAO.save(i2);
+                        
+                        Foto f1 = new Foto();
+                        f1.setUrl("https://betaimages.lopes.com.br/realestate/med/REO47110/LP87631011.jpg");
+                        fotoDAO.save(f1);
+                        
+                        
+                        List<Foto> fotos = fotoDAO.findAll();
+                        
+                        Imovel i = new Imovel();
+                        i.setImobiliaria(i1);
+                        i.setDescricao("Casa com 3 quartos à venda em Freguesia Do Ó - SP");
+                        i.setValor(950000);
+                        i.setCep("02835-010");
+                        i.setLogradouro("Rua Doutor Roberto Zwicker");
+                        i.setNumero(91);
+                        i.setBairro("Vila Serralheiro");
+                        i.setCidade(c2);
+                        i.setFotos(fotos);
+                        imovelDAO.save(i);
+                      
 			
 			
 			

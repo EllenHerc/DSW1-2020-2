@@ -50,7 +50,7 @@ public class ClientePropostaController {
             
             if(service.contarPorClienteImovel(serviceCliente.buscarPorUsuario(this.getUsuario()).getId(), id) > 0){
                 attr.addFlashAttribute("fail", "Você já possui uma proposta ABERTA para esse imovel");
-		return "listaImoveis";
+		return "redirect:/listaImoveis/listar";
             }
 
             model.addAttribute("idimovel",id);

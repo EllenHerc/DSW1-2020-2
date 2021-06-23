@@ -51,7 +51,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script type="text/javascript">
-             $(document).ready(function() {
+                $(document).ready(function() {
                     var max_fields = 10;
                     var wrapper = $(".inputs");
                     var add_button = $("#adicionarcampo");
@@ -79,6 +79,23 @@
                     });
                 });
                 
+                function mensagem(id) {
+                    var mens = document.getElementById('menssagem').value;
+                    var name=confirm(mens); 
+                    var url_string = window.location.href;
+                    var url = url_string.split("lista");
+                    url = url[0].split("#");           
+
+                    if (name)
+                    {                
+                        window.location.href = url[0]+"enviarContraProposta/"+id;
+                    }
+                    else
+                    {
+                        window.location.href = url[0]+"naoAceitar/"+id;
+                    }
+                }
+                
 		var url = '';
 		
 		$('button[id*="btn_"]').click(function() {
@@ -99,5 +116,7 @@
 			})
 		});
 	</script>
+        <input type="hidden" id="menssagem" th:value="#{notAceptedMessage}">
+
 </body>
 </html>
