@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span th:text="#{imovel.listar.label}"></span>
+					</li>
+				</ul>
+				<!-- filtro por cidades (implementar controller)
+                                    <ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<form id="filtroform" th:action="@{/listaImoveisImobiliaria/filtro}" th:object="${cidade}" method="GET">
+	   						<select name="cidade" id="cidade" onchange="this.form.submit()">
+	   							<option th:value="'all'">*</option>
+	     						<option th:each="cidade : ${cidades}" th:id="${cidade.id}" th:value="${cidade.id}" th:text="${cidade.nome}"></option>
+	    					</select>
+						</form>
+					</li>
+				</ul>-->
+			</div>
+		</nav>
+		
+		<div align="center" class="layout-content" layout:fragment="corpo">
+
+			<div th:replace="fragments/alert"></div>
+                        
+                        <div class="card-columns" th:each="imovel : ${imoveis}">                            
+                            <div class="card">
+                              <img class="card-img-top" th:src="${imovel.fotos[0].url}" alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title" th:text="${imovel.descricao}"></h5>
+                                    <table border="0" class="card-text">
+                                        <tr>
+                                            <td><span th:text="#{imovel.valor.label}"></span><span>: </span></td><td> <span th:text="${imovel.valor}"></span></td><td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span th:text="#{imovel.endereco.label}"></span><span>: </span></td><td> <br><span th:text="${imovel.logradouro}"></span><span>, </span><span th:text="${imovel.numero}"></span><span> - </span><span th:text="${imovel.bairro}"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td><td> <span th:text="${imovel.cidade.nome}"></span><span> - </span><span th:text="${imovel.cidade.uf}"></span><span>, </span><span th:text="${imovel.cep}"></span></td>
+                                        </tr>
+                                    </table>                                
+                              </div>
+                              <div class="card-footer">
+                                <small class="text-muted" th:text="${imovel.imobiliaria.nome}"></small>
+                              </div>
+                            </div>
+                            </c:forEach>
+                        </div>			
+		</div>
+
+		<div th:replace="fragments/modal :: modal"></div>
+</body>
+</html>
