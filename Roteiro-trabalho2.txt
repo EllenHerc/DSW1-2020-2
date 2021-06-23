@@ -1,7 +1,7 @@
 Roteiro e tecnlogias utilizadas:
 - Banco de dados utilizado: MySql. 
-- Certifique-se de ajustar as configurações de conexão no arquivo "application.properties"; por exemplo, url + porta do serviço MySql, assim como, usuario e senha de acesso.
-- Rodar o script sql (db) que esta dentro da pasta BancoDeDadosT2; para iniciar o banco de dados do projeto.
+- Certifique-se de ajustar as configurações de conexão no arquivo "application.properties"; por exemplo, url + porta do serviço MySql, assim como, usuario e senha de acesso e    server.port = 8090; 
+- O BD é criado automaticamente pela aplicação, caso queira executá-lo manualmente rodar o script sql (db) que esta dentro da pasta BancoDeDadosT2;
 - Utilize o comando "mvn spring-boot:run"; ou similar, para iniciar o projeto.
 
 R1: 
@@ -36,7 +36,7 @@ Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
 
 R9: 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado
-Divisão na implementação da funcionalidade: Caio (90%), Ellen (10%)
+Divisão na implementação da funcionalidade: Caio (10%), Ellen (90%)
 
 R10: 
 (X) Implementado ( ) Parcialmente implementado ( ) Não implementado
