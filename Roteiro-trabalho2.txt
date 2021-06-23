@@ -1,0 +1,43 @@
+Roteiro e tecnlogias utilizadas:
+- Banco de dados utilizado: MySql. 
+- Certifique-se de ajustar as configurações de conexão no arquivo "application.properties"; por exemplo, url + porta do serviço MySql, assim como, usuario e senha de acesso.
+- Rodar o script sql (db) que esta dentro da pasta BancoDeDadosT2; para iniciar o banco de dados do projeto.
+- Utilize o comando "mvn spring-boot:run"; ou similar, para iniciar o projeto.
+
+R1: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (60%), Ellen (40%)
+
+R2: Professor disse que não é necessario implementar por estarmos em menos pessoas no grupo.
+
+R3: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (30%), Ellen (70%)
+
+R4: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (30%), Ellen (70%)
+
+R5: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
+
+R6: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (60%), Ellen (40%)
+
+R7:
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
+
+R8: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (20%), Ellen (80%)
+
+R9: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (90%), Ellen (10%)
+
+R10: 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (40%), Ellen (60%)
