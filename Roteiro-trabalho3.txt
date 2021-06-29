@@ -1,0 +1,14 @@
+Roteiro e tecnlogias utilizadas:
+- Banco de dados utilizado: MySql. 
+- Certifique-se de ajustar as configurações de conexão no arquivo "application.properties"; por exemplo, url + porta do serviço MySql, assim como, usuario e senha de acesso.
+- Rodar o script sql (db) que esta dentro da pasta DBScripts; para iniciar o banco de dados do projeto.
+- Utilize o comando "mvn spring-boot:run"; ou similar, para iniciar o projeto.
+- Certifique-se de ler o arquivo "README.md", para melhores explicações a respeito dos endpoints e do funcionamento da API.
+
+R1 (Crud de clientes): 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (40%), Ellen (60%)
+
+R3 (Crud de imobiliarias): 
+(X) Implementado ( ) Parcialmente implementado ( ) Não implementado
+Divisão na implementação da funcionalidade: Caio (70%), Ellen (30%)

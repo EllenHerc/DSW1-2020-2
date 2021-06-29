@@ -63,5 +63,5 @@ public class UsuarioResource {
         return usuarioAntigo;
     }
     
-    // TODO: (aumentar os atributos do usuario pra serem clientes; atualizar metodo put
+    // TODO: remover senha na hora de devolver dados
 }
