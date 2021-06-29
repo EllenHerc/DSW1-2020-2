@@ -79,5 +79,5 @@ Rest API desenvolvida utilizando Java Spring Boot, durante a disciplina de desen
 - Obs: o arquivo **Endpoints.json** contém exemplos de utilização de todos os endpoints do projeto; podendo, este arquivo, ser importado em softwares como Insomnia ou Postman.
 
 ## Autores:
-- Caio Cesar de Morais Sales
-- Ellen Cristina Herculano
+- 760722 Caio Cesar de Morais Sales
+- 743528 Ellen Cristina Herculano
